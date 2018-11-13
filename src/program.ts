@@ -2,6 +2,8 @@
 
 import chalk from 'chalk'
 import * as program from 'commander'
+
+// tslint:disable
 const pkg = require('../package.json')
 
 import graphqlClientCommand from './commands/graphql-client'
@@ -57,8 +59,8 @@ program
 		console.log('Examples:')
 		console.log(`  ` +
 			`${chalk.gray('$')} jok graphql-client ` +
-			`--e ${chalk.green('https://server.jok.io')} ` +
-			`--o ${chalk.green('src/generated/jokio.ts')}`)
+			`-e ${chalk.green('https://server.jok.io')} ` +
+			`-o ${chalk.green('src/generated/jokio.ts')}`)
 		console.log()
 	})
 
