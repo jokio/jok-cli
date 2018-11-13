@@ -10,7 +10,7 @@ export default function (type: IntrospectionType) {
 			.map(x => `\t\t\t\t${x.name}`)
 	}
 
-	return `		if (!fragment) {
+	return `	if (!fragment) {
 			fragment = \`{
 ${fieldNames.join('\n')}
 			}\`

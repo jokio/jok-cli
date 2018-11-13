@@ -8,8 +8,8 @@ export default function ({
 }) {
 	if (!hasFragment) {
 		return `	// build query
-		const mutation = gql\`
-		mutation ${queryName}${variablesDeclarationString} {
+		const subscription = gql\`
+		subscription ${queryName}${variablesDeclarationString} {
 			${queryName}${variablesString}
 		}
 		\``
@@ -18,8 +18,8 @@ export default function ({
 	return `		const finishedFragment = \`fragment ${fragmentName} on ${graphqlTypeName} \${fragment}\`
 
 		// build query
-		const mutation = gql\`
-		mutation ${queryName}${variablesDeclarationString} {
+		const subscription = gql\`
+		subscription ${queryName}${variablesDeclarationString} {
 			${queryName}${variablesString} {
 				...${fragmentName}
 			}

@@ -12,6 +12,16 @@ export default function ({
 		[RootType.Subscription]: 'subscribe',
 	}[rootType]
 
+	if (rootType === RootType.Subscription) {
+		return `	// apollo call
+		return this.client.${methodName}({
+			query: ${rootType},${hasVariables ? `
+			variables: props,` : ''}
+		}).map(x => {
+			return <${returnType}><any>x
+		})`
+	}
+
 	return `	// apollo call
 		return this.client.${methodName}({
 			${rootType},${hasVariables ? `

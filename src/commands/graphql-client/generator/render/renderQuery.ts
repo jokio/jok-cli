@@ -15,7 +15,7 @@ export default function ({
 		\``
 	}
 
-	return `	const finishedFragment = \`fragment ${fragmentName} on ${graphqlTypeName} \${fragment}\`
+	return `		const finishedFragment = \`fragment ${fragmentName} on ${graphqlTypeName} \${fragment}\`
 
 		// build query
 		const query = gql\`
