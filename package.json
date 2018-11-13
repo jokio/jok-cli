@@ -1,6 +1,6 @@
 {
-	"name": "jokio-app",
-	"version": "0.0.1",
+	"name": "jok",
+	"version": "0.1.0",
 	"author": "",
 	"description": "",
 	"main": "dist/index.js",
@@ -12,9 +12,12 @@
 		"build": "tsc"
 	},
 	"dependencies": {
-		"jokio": "^0.3.0"
+		"chalk": "2.4.1",
+		"commander": "2.19.0"
 	},
 	"devDependencies": {
+		"@types/chalk": "2.2.0",
+		"@types/commander": "2.12.2",
 		"@types/jest": "23.3.9",
 		"dotenv": "6.0.0",
 		"fs-extra": "7.0.1",
@@ -33,7 +36,8 @@
 		"access": "public"
 	},
 	"keywords": [
-		"jok"
+		"jok",
+		"cli"
 	],
 	"license": "MIT",
 	"jest": {
