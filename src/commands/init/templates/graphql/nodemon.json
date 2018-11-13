@@ -1,0 +1,11 @@
+{
+	"watch": [
+		"src",
+		"schemas"
+	],
+	"ext": "ts,graphql",
+	"ignore": [
+		"src/**/*.spec.ts"
+	],
+	"exec": "ts-node --inspect=5858 -r dotenv/config ./src/index.ts"
+}

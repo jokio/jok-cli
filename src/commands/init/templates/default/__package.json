@@ -1,28 +1,20 @@
 {
-	"name": "jok",
-	"version": "0.1.2",
+	"name": "jokio-app",
+	"version": "0.0.1",
 	"author": "",
 	"description": "",
-	"main": "dist/program.js",
-	"types": "dist/program.d.js",
-	"bin": "./dist/program.js",
+	"main": "dist/index.js",
+	"types": "dist/index.d.js",
 	"scripts": {
 		"start": "ts-node src",
 		"test": "ts-node ./node_modules/jokio/src/_test",
 		"dev": "nodemon",
-		"build": "tsc",
-		"prepublish": "npm run build",
-		"postpublish": "rm -fr dist/",
-		"install-locally": "npm run build && npm pack && sudo npm i -g jok-0.1.0.tgz && rm -f jok-0.1.0.tgz && rm -fr dist/"
+		"build": "tsc"
 	},
 	"dependencies": {
-		"chalk": "2.4.1",
-		"commander": "2.19.0",
-		"jokio": "0.3.0"
+		"jokio": "^0.3.0"
 	},
 	"devDependencies": {
-		"@types/chalk": "2.2.0",
-		"@types/commander": "2.12.2",
 		"@types/jest": "23.3.9",
 		"dotenv": "6.0.0",
 		"fs-extra": "7.0.1",
@@ -41,8 +33,7 @@
 		"access": "public"
 	},
 	"keywords": [
-		"jok",
-		"cli"
+		"jok"
 	],
 	"license": "MIT",
 	"jest": {
