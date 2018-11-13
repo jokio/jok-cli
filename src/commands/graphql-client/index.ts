@@ -5,12 +5,13 @@ export default function ({
 	endpointUrl,
 	output: outputUrl,
 }) {
-	consoleOutput.wait('Reading remote url')
+	const stopSpinner = consoleOutput.wait('Reading remote url')
 
 	run({
 		graphqlUrl: endpointUrl,
 		outputUrl,
-	}).then(() =>
-		consoleOutput.success('Generated successfully'),
-	)
+	}).then(() => {
+		consoleOutput.success('Generated successfully')
+		stopSpinner()
+	})
 }
