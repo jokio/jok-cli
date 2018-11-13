@@ -1,13 +1,12 @@
 import {
-	IntrospectionType,
-	IntrospectionObjectType,
 	IntrospectionEnumType,
-	IntrospectionScalarType,
 	IntrospectionInputObjectType,
+	IntrospectionObjectType,
+	IntrospectionScalarType,
+	IntrospectionType,
 	IntrospectionUnionType,
 } from 'graphql'
 import getTypescriptField from './getTypescriptField'
-
 
 export default function (type: IntrospectionType) {
 
@@ -37,7 +36,6 @@ export default function (type: IntrospectionType) {
 	}
 }
 
-
 function objectType(type: IntrospectionObjectType) {
 	const fields = type.fields
 		.map(x => getTypescriptField(x.name, x.type, { isNull: false, isList: false }))
@@ -47,7 +45,7 @@ function objectType(type: IntrospectionObjectType) {
 	const typeName = type.name
 
 	return `
-interface ${typeName} {
+export interface ${typeName} {
 ${fields}
 }`
 }
@@ -61,7 +59,7 @@ function inputObjectType(type: IntrospectionInputObjectType) {
 	const typeName = type.name
 
 	return `
-interface ${typeName} {
+export interface ${typeName} {
 ${fields}
 }`
 }
@@ -73,7 +71,7 @@ function enumType(type: IntrospectionEnumType) {
 		.join('\n')
 
 	return `
-enum ${typeName} {
+export enum ${typeName} {
 ${fields}
 }`
 }
@@ -125,5 +123,5 @@ function unionType(type: IntrospectionUnionType) {
 	const valueTypes = type.possibleTypes
 		.map(x => x.name).join(' | ')
 
-	return `type ${typeName} = ${valueTypes}`
+	return `export type ${typeName} = ${valueTypes}`
 }

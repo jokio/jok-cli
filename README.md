@@ -29,7 +29,7 @@ _Note: `jok init` command is next version of [create-jokio-app](https://github.c
 <br/>
 <br/>
 
-### `graphql-client`
+### `graphql-client` _(beta)_
 Generate sdk for graphql remote endpoint.
 
 Features:
@@ -52,7 +52,7 @@ npx jok init testapp --nextjs # initialize nextjs project
 
 npx jok graphql-client -e https://server.jok.io -o src/generated/jokio.ts # generate proxy client for remote url
 ```
-_Note: npx will take care to use latest version library every time you run the command, thats why its recommended way_
+_Note: npx will take care to use latest version of `jok cli` every time you run the command, thats why its recommended way_
 
 <br/>
 

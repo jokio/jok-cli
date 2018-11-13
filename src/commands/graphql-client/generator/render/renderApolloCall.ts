@@ -12,7 +12,6 @@ export default function ({
 		[RootType.Subscription]: 'subscribe',
 	}[rootType]
 
-
 	return `	// apollo call
 		return this.client.${methodName}({
 			${rootType},${hasVariables ? `

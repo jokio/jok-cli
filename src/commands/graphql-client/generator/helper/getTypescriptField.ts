@@ -13,9 +13,6 @@ export default function getTypescriptField(fieldName: string, type: Introspectio
 		case 'UNION':
 			return buildField(fieldName, type.name, isNull, isList)
 
-		case 'SCALAR':
-			return buildField(fieldName, type.name, isNull, isList)
-
 		case 'NON_NULL':
 			return getTypescriptField(fieldName, type.ofType, { isList, isNull: true })
 

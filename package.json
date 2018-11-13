@@ -1,6 +1,6 @@
 {
 	"name": "jok",
-	"version": "0.1.2",
+	"version": "0.2.0",
 	"author": "Jok Entertainers",
 	"description": "Bundle of utility functions for code generation related to nodejs and graphql",
 	"main": "dist/program.js",
@@ -13,7 +13,7 @@
 		"build": "tsc",
 		"prepublish": "npm run build",
 		"postpublish": "rm -fr dist/",
-		"install-locally": "npm run build && npm pack && sudo npm i -g jok-0.1.2.tgz && rm -f jok-0.1.2.tgz && rm -fr dist/"
+		"install-locally": "npm run build && npm pack && sudo npm i -g jok-0.2.0.tgz && rm -f jok-0.2.0.tgz && rm -fr dist/"
 	},
 	"dependencies": {
 		"ansi-escapes": "3.1.0",
