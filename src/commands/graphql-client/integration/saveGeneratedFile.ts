@@ -1,4 +1,4 @@
-import { existsSync, writeFileSync } from 'fs'
+import { existsSync, unlinkSync, writeFileSync } from 'fs'
 import * as mkdirp from 'mkdirp'
 import * as path from 'path'
 
@@ -9,6 +9,10 @@ export default function (location, output) {
 
 	if (!existsSync(dir)) {
 		mkdirp.sync(folderPath)
+	}
+
+	if (existsSync(fullpath)) {
+		unlinkSync(fullpath)
 	}
 
 	writeFileSync(fullpath, output, { flag: 'wx' })
