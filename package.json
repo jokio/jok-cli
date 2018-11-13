@@ -5,15 +5,18 @@
 	"description": "",
 	"main": "dist/index.js",
 	"types": "dist/index.d.js",
+	"bin": "./dist/program.js",
 	"scripts": {
 		"start": "ts-node src",
 		"test": "ts-node ./node_modules/jokio/src/_test",
 		"dev": "nodemon",
-		"build": "tsc"
+		"build": "tsc",
+		"install-locally": "npm run build && npm pack && sudo npm i -g jok-0.1.0.tgz && rm -f jok-0.1.0.tgz && rm -fr dist/"
 	},
 	"dependencies": {
 		"chalk": "2.4.1",
-		"commander": "2.19.0"
+		"commander": "2.19.0",
+		"jokio": "0.3.0"
 	},
 	"devDependencies": {
 		"@types/chalk": "2.2.0",
