@@ -10,11 +10,9 @@ export default function (type: IntrospectionType) {
 			.map(x => `\t\t\t\t${x.name}`)
 	}
 
-	return `	if (!fragment) {
-			fragment = \`{
+	return `	const localFragment = fragment || \`{
 ${fieldNames.join('\n')}
-			}\`
-		}
+		}\`
 `
 }
 
