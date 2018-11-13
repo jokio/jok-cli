@@ -18,7 +18,7 @@ export default function ({
 			query: ${rootType},${hasVariables ? `
 			variables: props,` : ''}
 		}).map(x => {
-			return <${returnType}><any>x
+			return <${returnType}><any>x.data
 		})`
 	}
 
