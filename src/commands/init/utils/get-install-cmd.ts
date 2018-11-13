@@ -1,4 +1,4 @@
-const execa = require('execa')
+import * as execa from 'execa'
 
 let cmd
 

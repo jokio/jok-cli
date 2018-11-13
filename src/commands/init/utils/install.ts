@@ -1,24 +1,18 @@
-const execa = require('execa')
-const messages = require('../messages')
-const getInstallCmd = require('./get-install-cmd')
-const output = require('./output')
+import * as execa from 'execa'
+import * as output from '../../../integration/output'
+import * as messages from '../messages'
+import getInstallCmd from './get-install-cmd'
 
 export default function (opts) {
 	const projectName = opts.projectName
 	const projectPath = opts.projectPath
 	const packages = opts.packages || []
 
-	// if (packages.length === 0) {
-	//   console.log('Missing packages in `install`, try running again.')
-	//   process.exit(1)
-	// }
-
 	const installCmd = getInstallCmd()
 	const installArgs = packages.length
 		? getInstallArgs(installCmd, packages)
 		: []
 
-	// console.log(messages.installing(packages))
 	process.chdir(projectPath)
 
 	return new Promise(function (resolve, reject) {

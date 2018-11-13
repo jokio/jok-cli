@@ -1,8 +1,7 @@
-const path = require('path')
-const Promise = require('promise')
-const messages = require('../messages')
-const output = require('./output')
-const fs = require('fs-extra')
+import * as fs from 'fs-extra'
+import * as path from 'path'
+import * as output from '../../../integration/output'
+import * as messages from '../messages'
 
 export default function copyDir(opts) {
 	const templatePath = opts.templatePath
@@ -12,53 +11,33 @@ export default function copyDir(opts) {
 
 	console.log(messages.copying(projectName, templateName))
 
+	const files = [
+		{ from: './_gitignore', to: './.gitignore' },
+	]
+
 	return new Promise(function (resolve, reject) {
 		const stopCopySpinner = output.wait('Copying files')
 
 		fs.copy(templatePath, projectPath)
-			.then(function () {
-				return fs.move(
-					path.resolve(projectPath, './__gitignore'),
-					path.resolve(projectPath, './.gitignore'),
-				)
+			.then(() => {
+				return Promise.all(files.map(x => {
+					const fromFullPath = path.resolve(projectPath, x.from)
+					const toFullPath = path.resolve(projectPath, x.to)
+
+					return fs.pathExists(fromFullPath).then(exists =>
+						exists
+							? fs.move(fromFullPath, toFullPath)
+							: Promise.resolve(null),
+					)
+				}))
 			})
-			.then(function () {
-				return fs.move(
-					path.resolve(projectPath, './__editorconfig'),
-					path.resolve(projectPath, './.editorconfig'),
-				)
-			})
-			// .then(function () {
-			//   return fs.move(
-			//     path.resolve(projectPath, './__travis.yml'),
-			//     path.resolve(projectPath, './.travis.yml')
-			//   )
-			// })
-			.then(function () {
-				return fs.move(
-					path.resolve(projectPath, './__package.json'),
-					path.resolve(projectPath, './package.json'),
-				)
-			})
-			.then(function () {
-				return fs.move(
-					path.resolve(projectPath, './__dockerignore'),
-					path.resolve(projectPath, './.dockerignore'),
-				)
-			})
-			.then(function () {
-				return fs.move(
-					path.resolve(projectPath, './__env'),
-					path.resolve(projectPath, './.env'),
-				)
-			})
-			.then(function () {
+			.then(() => {
 				stopCopySpinner()
 				output.success(`Created files for "${output.cmd(projectName)}" jokio app`)
-				// return this
+
+				resolve(fs)
 			})
-			.then(resolve)
-			.catch(function (err) {
+			.catch((err) => {
 				console.error(err)
 				stopCopySpinner()
 				output.error('Copy command failed, try again.')

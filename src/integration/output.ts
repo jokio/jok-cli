@@ -1,6 +1,6 @@
-const { eraseLine } = require('ansi-escapes')
-const chalk = require('chalk')
-const ora = require('ora')
+import { eraseLine } from 'ansi-escapes'
+import chalk from 'chalk'
+import * as ora from 'ora'
 const ms = require('ms')
 
 export function info(msg) {
@@ -27,7 +27,7 @@ export function time() {
 
 export function wait(msg) {
 	const spinner = ora(chalk.green(msg))
-	spinner.color = 'blue'
+	spinner.color = 'green'
 	spinner.start()
 
 	return function () {
@@ -72,14 +72,14 @@ export function prompt(opts) {
 	})
 }
 
-exports.cmd = function (cmd) {
-	return chalk.bold(chalk.cyan(cmd))
+export function cmd(x) {
+	return chalk.bold(chalk.cyan(x))
 }
 
-exports.code = function (cmd) {
-	return `${chalk.gray('`')}${chalk.bold(cmd)}${chalk.gray('`')}`
+export function code(x) {
+	return `${chalk.gray('`')}${chalk.bold(x)}${chalk.gray('`')}`
 }
 
-exports.param = function (param) {
-	return chalk.bold(`${chalk.gray('{')}${chalk.bold(param)}${chalk.gray('}')}`)
+export function param(x) {
+	return chalk.bold(`${chalk.gray('{')}${chalk.bold(x)}${chalk.gray('}')}`)
 }

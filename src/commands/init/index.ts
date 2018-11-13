@@ -9,10 +9,10 @@ export default function ({
 	nextjs,
 	graphql,
 }) {
-	console.log(projectName, nextjs, graphql)
 	createJokioApp({
 		projectName,
-
+		nextjs,
+		graphql,
 	})
 }
 
@@ -41,7 +41,7 @@ function createJokioApp(opts) {
 		templateName = 'graphql'
 	}
 
-	const templatePath = path.resolve(__dirname, `./templates/${templateName}`)
+	const templatePath = path.resolve(__dirname, `../../../templates/project/${templateName}`)
 
 	copyDir({
 		templatePath: templatePath,

@@ -1,6 +1,6 @@
-const chalk = require('chalk')
+import chalk from 'chalk'
 // const getInstallCmd = require('./utils/get-install-cmd')
-const output = require('./utils/output')
+import * as output from '../../integration/output'
 
 const program = {
 	name: 'jok',

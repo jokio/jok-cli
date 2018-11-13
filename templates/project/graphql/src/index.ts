@@ -1,7 +1,6 @@
-import { GraphQLServer } from 'graphql-yoga'
 import { express as voyagerMiddleware } from 'graphql-voyager/middleware'
+import { GraphQLServer } from 'graphql-yoga'
 import resolvers from './resolvers'
-
 
 const server = new GraphQLServer({
 	typeDefs: './schemas/schema.graphql',

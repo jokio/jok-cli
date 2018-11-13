@@ -13,19 +13,33 @@
 		"build": "tsc",
 		"prepublish": "npm run build",
 		"postpublish": "rm -fr dist/",
-		"install-locally": "npm run build && npm pack && sudo npm i -g jok-0.1.0.tgz && rm -f jok-0.1.0.tgz && rm -fr dist/"
+		"install-locally": "npm run build && npm pack && sudo npm i -g jok-0.1.2.tgz && rm -f jok-0.1.2.tgz && rm -fr dist/"
 	},
 	"dependencies": {
+		"ansi-escapes": "3.1.0",
 		"chalk": "2.4.1",
 		"commander": "2.19.0",
-		"jokio": "0.3.0"
+		"execa": "1.0.0",
+		"fs-extra": "7.0.1",
+		"graphql": "^14.0.2",
+		"jokio": "0.3.0",
+		"mkdirp": "^0.5.1",
+		"ms": "2.1.1",
+		"node-fetch": "^2.3.0",
+		"ora": "3.0.0"
 	},
 	"devDependencies": {
 		"@types/chalk": "2.2.0",
 		"@types/commander": "2.12.2",
+		"@types/execa": "^0.9.0",
+		"@types/fs-extra": "^5.0.4",
+		"@types/graphql": "^14.0.3",
 		"@types/jest": "23.3.9",
+		"@types/mkdirp": "^0.5.2",
+		"@types/ms": "^0.7.30",
+		"@types/node-fetch": "^2.1.2",
+		"@types/ora": "^1.3.4",
 		"dotenv": "6.0.0",
-		"fs-extra": "7.0.1",
 		"jest": "23.6.0",
 		"nodemon": "1.14.11",
 		"ts-jest": "23.10.4",
