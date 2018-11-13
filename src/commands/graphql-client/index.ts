@@ -11,7 +11,10 @@ export default function ({
 		graphqlUrl: endpointUrl,
 		outputUrl,
 	}).then(() => {
-		consoleOutput.success('Generated successfully')
 		stopSpinner()
+		consoleOutput.success('Generated successfully')
+	}).catch(err => {
+		stopSpinner()
+		consoleOutput.error(err)
 	})
 }
