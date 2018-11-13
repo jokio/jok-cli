@@ -3,6 +3,7 @@ import { RootType } from '../../utils/rootType'
 export default function ({
 	rootType,
 	hasVariables,
+	queryName,
 	returnType,
 }: Props) {
 
@@ -18,7 +19,11 @@ export default function ({
 			query: ${rootType},${hasVariables ? `
 			variables: props,` : ''}
 		}).map(x => {
-			return <${returnType}><any>x.data
+			if (!x.data) {
+				return <${returnType}><any>null
+			}
+
+			return <${returnType}><any>x.data['${queryName}']
 		})`
 	}
 
@@ -32,13 +37,18 @@ export default function ({
 				throw new Error(<any>result.errors)
 			}
 
+			if (!result.data) {
+				return <${returnType}><any>null
+			}
+
 			// cast the result and return (need any for scalar types, to avoid compilation error)
-			return <${returnType}><any>result.data
+			return <${returnType}><any>result.data['${queryName}']
 		})`
 }
 
 interface Props {
 	rootType: RootType
 	hasVariables: boolean
+	queryName: string
 	returnType: any
 }

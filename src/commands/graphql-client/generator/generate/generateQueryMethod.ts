@@ -42,7 +42,7 @@ export default function (field: IntrospectionField, types: IntrospectionType[]) 
 	const variablesDeclarationString = buildVariablesDeclarationString(inputs)
 	const variablesString = buildVariablesPassString(inputs)
 
-	const type = <IntrospectionType> types.find(x => x.name === returnGraphqlTypeName)
+	const type = <IntrospectionType>types.find(x => x.name === returnGraphqlTypeName)
 
 	const method = renderMethod({
 		methodName,
@@ -62,6 +62,7 @@ export default function (field: IntrospectionField, types: IntrospectionType[]) 
 			renderApolloCall({
 				rootType: RootType.Query,
 				hasVariables: hasInputs,
+				queryName,
 				returnType: returnClassFullname,
 			}),
 	})
