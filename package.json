@@ -1,8 +1,8 @@
 {
 	"name": "jok",
 	"version": "0.1.2",
-	"author": "",
-	"description": "",
+	"author": "Jok Entertainers",
+	"description": "Bundle of utility functions for code generation related to nodejs and graphql",
 	"main": "dist/program.js",
 	"types": "dist/program.d.js",
 	"bin": "./dist/program.js",
@@ -49,7 +49,7 @@
 	},
 	"repository": {
 		"type": "git",
-		"url": ""
+		"url": "https://github.com/jokio/jok-cli"
 	},
 	"publishConfig": {
 		"access": "public"
