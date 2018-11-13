@@ -16,7 +16,7 @@ import renderMutation from '../render/renderMutation'
 export default function (field: IntrospectionField, types: IntrospectionType[]) {
 
 	const queryName = field.name
-	const propsType = getTypescriptPropsTypeName('Query', queryName)
+	const propsType = getTypescriptPropsTypeName('Mutation', queryName)
 	const inputs = field.args || []
 	const methodName = uncapitalizeFirstLetter(queryName)
 	const hasInputs = !!inputs.length
