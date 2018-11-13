@@ -12,7 +12,7 @@ export default function ({
 		outputUrl,
 	}).then(() => {
 		stopSpinner()
-		consoleOutput.success('Generated successfully')
+		consoleOutput.success(`Generated successfully at: ${outputUrl}`)
 	}).catch(err => {
 		stopSpinner()
 		consoleOutput.error(err)
