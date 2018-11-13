@@ -12,12 +12,18 @@ The easiest way to create new project on nodejs
 
 Those features are out of the box in default template :
 
-* Configured dev environement ([nodemon](https://github.com/remy/nodemon))
-* Configured test environement ([jest](https://github.com/facebook/jest))
-* Configured [EditorConfig](https://github.com/editorconfig/editorconfig)
-* Configured CI/CD ([travis](http://travis-ci.org))
-* Configured Linting ([TSLint](https://github.com/palantir/tslint))
-* Last but not least: 100% type safety! ([TypeScript](https://github.com/Microsoft/TypeScript))
+✅ Configured dev environement ([nodemon](https://github.com/remy/nodemon))
+
+✅ Configured test environement ([jest](https://github.com/facebook/jest))
+
+✅ Configured [EditorConfig](https://github.com/editorconfig/editorconfig)
+
+✅ Configured CI/CD ([travis](http://travis-ci.org))
+
+✅ Configured Linting ([TSLint](https://github.com/palantir/tslint))
+
+✅ Last but not least: 100% type safety! ([TypeScript](https://github.com/Microsoft/TypeScript))
+
 
 _Note: `jok init` command is next version of [create-jokio-app](https://github.com/apollographql/create-jokio-app)_
 <br/>
@@ -27,8 +33,10 @@ _Note: `jok init` command is next version of [create-jokio-app](https://github.c
 Generate sdk for graphql remote endpoint.
 
 Features:
-* Generates types (interfaces) based on remote graphql server
-* Generates Queries, Mutations & Subscriptions api on top of [Apollo Client](https://github.com/apollographql/apollo-client)
+
+✅ Generates types (interfaces) based on remote graphql server
+
+✅ Generates Queries, Mutations & Subscriptions api on top of [Apollo Client](https://github.com/apollographql/apollo-client)
 
 <br/>
 <br/>
@@ -42,9 +50,13 @@ npx jok init testapp --graphql # initialize graphql project
 
 npx jok init testapp --nextjs # initialize nextjs project
 
-jok graphql-client -e https://server.jok.io -o src/generated/jokio.ts # generate proxy client for remote url
+npx jok graphql-client -e https://server.jok.io -o src/generated/jokio.ts # generate proxy client for remote url
 ```
+_Note: npx will take care to use latest version library every time you run the command, thats why its recommended way_
 
+<br/>
+
+## Alternative way to use
 if you prefer using [yarn](https://github.com/yarnpkg/yarn), please install jok-cli globally first
 ```bash
 yarn add global jok
@@ -57,5 +69,5 @@ jok init testapp --graphql # initialize graphql project
 
 jok init testapp --nextjs # initialize nextjs project
 
-graphql-client -e https://server.jok.io -o src/generated/jokio.ts # generate proxy client for remote url
+jok graphql-client -e https://server.jok.io -o src/generated/jokio.ts # generate proxy client for remote url
 ```
