@@ -30,13 +30,32 @@ Features:
 * Generates types (interfaces) based on remote graphql server
 * Generates Queries, Mutations & Subscriptions api on top of [Apollo Client](https://github.com/apollographql/apollo-client)
 
+<br/>
+<br/>
 
 ## How to use
+Recommended way to use `jok-cli` is to have [npx](https://github.com/zkat/npx) package installed globally on your computer and use following commands:
+```bash
+npx jok init testapp # initialize empty pre-configured project
 
-`npx jok init testapp` - initialize empty pre-configured project
+npx jok init testapp --graphql # initialize graphql project
 
-`npx jok init testapp --graphql` - initialize graphql project
+npx jok init testapp --nextjs # initialize nextjs project
 
-`npx jok init testapp --nextjs` - initialize nextjs project
+jok graphql-client -e https://server.jok.io -o src/generated/jokio.ts # generate proxy client for remote url
+```
 
-`jok graphql-client -e https://server.jok.io -o src/generated/jokio.ts` - generate proxy client for remote url
+if you prefer using [yarn](https://github.com/yarnpkg/yarn), please install jok-cli globally first
+```bash
+yarn add global jok
+```
+and next you will be able to call `jok commands` directly:
+```bash
+jok init testapp # initialize empty pre-configured project
+
+jok init testapp --graphql # initialize graphql project
+
+jok init testapp --nextjs # initialize nextjs project
+
+graphql-client -e https://server.jok.io -o src/generated/jokio.ts # generate proxy client for remote url
+```
