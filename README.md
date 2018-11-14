@@ -83,7 +83,6 @@ graphql.mutation.login({ username: 'example@email.com',	password: 'Qwer!234' })
   .then(x => console.log(x))
   .catch(err => console.warn(err))
 
-
 // example subscription call
 graphql.subscription.musicChannelUpdated({}).subscribe(x => {
   console.log('musicChannelUpdated', x);
