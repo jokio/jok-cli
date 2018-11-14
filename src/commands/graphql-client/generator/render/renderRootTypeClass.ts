@@ -10,7 +10,7 @@ ${renderPropTypes()}
 // ${className} apis ------------------------------------
 class ${className} {
 
-	constructor(private client: ApolloClient<any>) { }
+	constructor(private client: ApolloClient<any>, private defaultOptions: GraphqlCallOptions = {}) { }
 ${renderMethods()}
 }
 `

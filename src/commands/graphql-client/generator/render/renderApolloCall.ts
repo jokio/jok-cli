@@ -13,11 +13,18 @@ export default function ({
 		[RootType.Subscription]: 'subscribe',
 	}[rootType]
 
+	const renderOptions = `
+		const { fetchPolicy } = defaultOptions || this.defaultOptions
+	`
+
 	if (rootType === RootType.Subscription) {
-		return `	// apollo call
+		return `
+		${renderOptions}
+		// apollo call
 		return this.client.${methodName}({
 			query: ${rootType},${hasVariables ? `
 			variables: props,` : ''}
+			fetchPolicy,
 		}).map(x => {
 			if (!x.data) {
 				return <${returnType}><any>null
@@ -27,10 +34,13 @@ export default function ({
 		})`
 	}
 
-	return `	// apollo call
+	return `
+		${renderOptions}
+		// apollo call
 		return this.client.${methodName}({
 			${rootType},${hasVariables ? `
 			variables: props,` : ''}
+			fetchPolicy,
 		}).then(result => {
 			// if error, throw it
 			if (result.errors) {

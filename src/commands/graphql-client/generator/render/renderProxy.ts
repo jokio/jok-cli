@@ -15,6 +15,15 @@ ${generatedQuery}
 ${generatedMutation}
 ${generatedSubscription}
 
+interface GraphqlCallOptions {
+	fetchPolicy?: FetchPolicy
+}
+
+interface DefaultOptions {
+	query?: GraphqlCallOptions
+	mutation?: GraphqlCallOptions
+	subscription?: GraphqlCallOptions
+}
 
 export interface Client {
 	query: Query
@@ -22,11 +31,11 @@ export interface Client {
 	subscription: Subscription
 }
 
-export default function (client: ApolloClient<any>): Client {
+export default function (client: ApolloClient<any>, defaultOptions: DefaultOptions = {}): Client {
 	return {
-		query: new Query(client),
-		mutation: new Mutation(client),
-		subscription: new Subscription(client),
+		query: new Query(client, defaultOptions.query || {}),
+		mutation: new Mutation(client, defaultOptions.mutation || {}),
+		subscription: new Subscription(client, defaultOptions.subscription || {}),
 	}
 }
 `

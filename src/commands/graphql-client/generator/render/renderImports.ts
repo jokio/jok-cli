@@ -1,5 +1,5 @@
 export default function () {
-	return `import ApolloClient from 'apollo-client'
+	return `import ApolloClient, { FetchPolicy } from 'apollo-client'
 import gql from 'graphql-tag'
 `
 }

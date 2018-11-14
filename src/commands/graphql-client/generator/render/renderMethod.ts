@@ -7,14 +7,21 @@ export default function ({
 }) {
 	if (!hasProps) {
 		return `
-	${methodName}(fragment?: string) {
+	${methodName}(
+		fragment?: string,
+		defaultOptions?: GraphqlCallOptions
+	) {
 	${renderContent()}
 	}`
 	}
 
 	// with props
 	return `
-	${methodName}(props: ${propsType}, fragment?: string) {
+	${methodName}(
+		props: ${propsType},
+		fragment?: string,
+		defaultOptions?: GraphqlCallOptions
+	) {
 	${renderContent()}
 	}`
 }

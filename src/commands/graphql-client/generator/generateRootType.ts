@@ -1,10 +1,10 @@
 import { IntrospectionType } from 'graphql'
-import generateQueryMethod from './generate/generateQueryMethod'
-import generateMutationMethod from './generate/generateMutationMethod'
-import generateSubscriptionMethod from './generate/generateSubscriptionMethod'
-import { RootType } from '../utils/rootType'
-import renderRootTypeClass from './render/renderRootTypeClass'
 import capitalizeFirstLetter from '../utils/capitalizeFirstLetter'
+import { RootType } from '../utils/rootType'
+import generateMutationMethod from './generate/generateMutationMethod'
+import generateQueryMethod from './generate/generateQueryMethod'
+import generateSubscriptionMethod from './generate/generateSubscriptionMethod'
+import renderRootTypeClass from './render/renderRootTypeClass'
 
 export default (typeName: RootType, otherTypes: IntrospectionType[]) => (queryType: IntrospectionType) => {
 	if (!queryType ||
@@ -34,7 +34,6 @@ export default (typeName: RootType, otherTypes: IntrospectionType[]) => (queryTy
 		.map(x => x.method)
 
 	const className = capitalizeFirstLetter(typeName)
-
 
 	return renderRootTypeClass({
 		className,
