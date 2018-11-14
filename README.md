@@ -67,29 +67,26 @@ import { ApolloClient } from 'apollo-client';
 const apolloClient: ApolloClient = /* TODO: Set apollo client */
 
 const graphql = getClient(apolloClient, {
-      query: {
-		fetchPolicy: 'network-only'
-      }
+  query: {
+    fetchPolicy: 'network-only'
+  }
 });
 
 
 // example query call
 graphql.query.me()
-	.then(x => console.log(x))
-	.catch(err => console.warn(err))
+  .then(x => console.log(x))
+  .catch(err => console.warn(err))
 
 // example mutation call
-graphql.mutation.login({
-	username: 'example.email.com',
-	password: 'Qwer!234'
-})
-	.then(x => console.log(x))
-	.catch(err => console.warn(err))
+graphql.mutation.login({ username: 'example.email.com',	password: 'Qwer!234' })
+  .then(x => console.log(x))
+  .catch(err => console.warn(err))
 
 
 // example subscription call
 graphql.subscription.musicChannelUpdated({}).subscribe(x => {
-	console.log('musicChannelUpdated', x);
+  console.log('musicChannelUpdated', x);
 });
 
 ```
