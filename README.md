@@ -79,7 +79,7 @@ graphql.query.me()
   .catch(err => console.warn(err))
 
 // example mutation call
-graphql.mutation.login({ username: 'example.email.com',	password: 'Qwer!234' })
+graphql.mutation.login({ username: 'example@email.com',	password: 'Qwer!234' })
   .then(x => console.log(x))
   .catch(err => console.warn(err))
 
