@@ -25,7 +25,7 @@ Those features are out of the box in default template :
 ✅ Last but not least: 100% type safety! ([TypeScript](https://github.com/Microsoft/TypeScript))
 
 
-_Note: `jok init` command is next version of [create-jokio-app](https://github.com/apollographql/create-jokio-app)_
+_Note: `jok init` command is next version of [create-jokio-app](https://github.com/jokio/create-jokio-app)_
 <br/>
 <br/>
 

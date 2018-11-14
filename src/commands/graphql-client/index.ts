@@ -6,7 +6,7 @@ export default function ({
 	endpointUrl,
 	output: outputUrl,
 }) {
-	const stopSpinner = consoleOutput.wait('Reading remote url')
+	const stopSpinner = consoleOutput.wait('Fetching graphql endpoint (schema introspection)')
 
 	run({
 		graphqlUrl: endpointUrl,
