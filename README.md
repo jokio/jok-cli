@@ -43,6 +43,10 @@ Features:
 
 ## How to use
 Recommended way to use `jok-cli` is to have [npx](https://github.com/zkat/npx) package installed globally on your computer and use following commands:
+
+_Note: npx will take care to use latest version of `jok cli` every time you run the command, thats why its recommended way_
+
+### init
 ```bash
 npx jok init testapp # initialize empty pre-configured project
 
@@ -51,12 +55,45 @@ npx jok init testapp --graphql # initialize graphql project
 npx jok init testapp --nextjs # initialize nextjs project
 ```
 
-for generating graphql client in front-end projects (Angular, React, etc.) You will need to have apollo client already configured
+### graphql-client
+for generating graphql client in front-end projects (Angular, React, etc.) `graphql-client` has dependencies on apollo client
 ```bash
 npx jok graphql-client -e https://server.jok.io -o src/generated/jokio.ts # generate proxy client for remote url
 ```
+```ts
+import getClient, { Client } from './generated/jokio';
+import { ApolloClient } from 'apollo-client';
 
-_Note: npx will take care to use latest version of `jok cli` every time you run the command, thats why its recommended way_
+const apolloClient: ApolloClient = /* TODO: Set apollo client */
+
+const graphql = getClient(apolloClient, {
+      query: {
+		fetchPolicy: 'network-only'
+      }
+});
+
+
+// example query call
+graphql.query.me()
+	.then(x => console.log(x))
+	.catch(err => console.warn(err))
+
+// example mutation call
+graphql.mutation.login({
+	username: 'example.email.com',
+	password: 'Qwer!234'
+})
+	.then(x => console.log(x))
+	.catch(err => console.warn(err))
+
+
+// example subscription call
+graphql.subscription.musicChannelUpdated({}).subscribe(x => {
+	console.log('musicChannelUpdated', x);
+});
+
+```
+_Note: You will need to have [apollo client](https://github.com/apollographql/apollo-client) already configured in your project_
 
 <br/>
 
