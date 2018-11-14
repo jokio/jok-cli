@@ -5,6 +5,7 @@ import * as program from 'commander'
 
 // tslint:disable
 const pkg = require('../package.json')
+// tslint:enable
 
 import graphqlClientCommand from './commands/graphql-client'
 import initCommand from './commands/init'
