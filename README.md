@@ -30,7 +30,7 @@ _Note: `jok init` command is next version of [create-jokio-app](https://github.c
 <br/>
 
 ### `graphql-client` _(beta)_
-Generate sdk for graphql remote endpoint.
+Generate sdk for graphql remote endpoint in front-end projects.
 
 Features:
 
@@ -49,9 +49,13 @@ npx jok init testapp # initialize empty pre-configured project
 npx jok init testapp --graphql # initialize graphql project
 
 npx jok init testapp --nextjs # initialize nextjs project
+```
 
+for generating graphql client in front-end projects (Angular, React, etc.) You will need to have apollo client already configured
+```bash
 npx jok graphql-client -e https://server.jok.io -o src/generated/jokio.ts # generate proxy client for remote url
 ```
+
 _Note: npx will take care to use latest version of `jok cli` every time you run the command, thats why its recommended way_
 
 <br/>
@@ -68,6 +72,8 @@ jok init testapp # initialize empty pre-configured project
 jok init testapp --graphql # initialize graphql project
 
 jok init testapp --nextjs # initialize nextjs project
+```
 
+```bash
 jok graphql-client -e https://server.jok.io -o src/generated/jokio.ts # generate proxy client for remote url
 ```
