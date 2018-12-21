@@ -48,13 +48,13 @@ function createJokioApp(opts) {
 		templateName: templateName,
 		projectPath: projectPath,
 		projectName: projectName,
-	}).then(installWithMessageFactory(opts))
+	}).then(installWithMessageFn(opts))
 		.catch(function (err) {
 			throw err
 		})
 }
 
-function installWithMessageFactory(opts) {
+function installWithMessageFn(opts) {
 	const projectName = opts.projectName
 	const projectPath = opts.projectPath
 
