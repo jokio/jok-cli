@@ -25,7 +25,8 @@ export default function (opts) {
 			stopInstallSpinner()
 			output.success(`Installed dependencies for ${projectName}`)
 			resolve()
-		}).catch(function () {
+		}).catch(function (err) {
+			console.log(err)
 			stopInstallSpinner()
 			console.log(messages.installError(packages))
 			return reject(new Error(`${installCmd} installation failed`))
