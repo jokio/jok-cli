@@ -15,7 +15,7 @@
 
 ### BREAKING CHANGES
 
-* - removed graphql-yoga dependency
+* remove graphql-yoga dependency
 
 
 
