@@ -1,6 +1,6 @@
 {
 	"name": "jok",
-	"version": "0.5.7",
+	"version": "0.5.8",
 	"author": "Jok Entertainers",
 	"description": "Bundle of utility functions for code generation related to nodejs and graphql",
 	"main": "dist/program.js",
@@ -11,8 +11,8 @@
 		"test": "ts-node ./node_modules/jokio/src/_test",
 		"dev": "nodemon",
 		"build": "tsc",
-		"prepublish": "npm run build && standard-changelog",
-		"postpublish": "rm -fr dist/"
+		"before": "npm run build && standard-changelog",
+		"after": "rm -fr dist/"
 	},
 	"dependencies": {
 		"ansi-escapes": "3.1.0",
