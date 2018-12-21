@@ -1,3 +1,16 @@
+## [0.5.12](https://github.com/jokio/jok-cli/compare/v0.5.9...v0.5.12) (2018-12-21)
+
+
+### Bug Fixes
+
+* npm usage issue ([0c6c66f](https://github.com/jokio/jok-cli/commit/0c6c66f))
+
+
+
+## [0.5.10](https://github.com/jokio/jok-cli/compare/v0.5.9...v0.5.10) (2018-12-21)
+
+
+
 ## [0.5.7](https://github.com/jokio/jok-cli/compare/v0.5.3...v0.5.7) (2018-12-21)
 
 
