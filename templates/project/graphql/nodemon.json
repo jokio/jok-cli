@@ -1,9 +1,8 @@
 {
 	"watch": [
-		"src",
-		"schemas"
+		"src"
 	],
-	"ext": "ts,graphql",
+	"ext": "ts",
 	"ignore": [
 		"src/**/*.spec.ts"
 	],

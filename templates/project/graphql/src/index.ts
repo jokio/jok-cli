@@ -1,12 +1,19 @@
 import { express as voyagerMiddleware } from 'graphql-voyager/middleware'
-import { GraphQLServer } from 'graphql-yoga'
 import resolvers from './resolvers'
+import typeDefs from './schema'
+import { ApolloServer } from './server'
 
-const server = new GraphQLServer({
-	typeDefs: './schemas/schema.graphql',
+const server = new ApolloServer({
+	typeDefs,
 	resolvers,
+	subscriptions: {
+		path: '/',
+	},
 })
 
 server.express.use('/voyager', voyagerMiddleware({ endpointUrl: '/' }))
 
-server.start({ port: 4000 }, ({ port }) => console.log(`Server is running on localhost:${port}`))
+server.listen({ port: 4000 }).then(({ url, subscriptionsUrl }) => {
+	console.log(`🚀 Server ready at ${url}`)
+	console.log(`🚀 Subscriptions ready at ${subscriptionsUrl}`)
+})
