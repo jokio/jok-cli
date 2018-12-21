@@ -41,6 +41,10 @@ function createJokioApp(opts) {
 		templateName = 'graphql'
 	}
 
+	if (opts.nextjs && opts.graphql) {
+		templateName = 'nextjs+graphql'
+	}
+
 	const templatePath = path.resolve(__dirname, `../../../templates/project/${templateName}`)
 
 	copyDir({

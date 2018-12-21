@@ -1,5 +1,5 @@
-import * as Express from 'express'
-import * as nextjslib from 'next'
+import Express from 'express'
+import nextjslib from 'next'
 
 async function run({ port }) {
 	const express = Express()
