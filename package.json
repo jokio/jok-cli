@@ -1,6 +1,6 @@
 {
 	"name": "jok",
-	"version": "0.5.8",
+	"version": "0.5.9",
 	"author": "Jok Entertainers",
 	"description": "Bundle of utility functions for code generation related to nodejs and graphql",
 	"main": "dist/program.js",
