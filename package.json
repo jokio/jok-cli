@@ -12,8 +12,7 @@
 		"dev": "nodemon",
 		"build": "tsc",
 		"prepublish": "npm run build",
-		"postpublish": "rm -fr dist/",
-		"install-locally": "npm run build && npm pack && sudo npm i -g jok-0.3.1.tgz && rm -f jok-0.3.1.tgz && rm -fr dist/"
+		"postpublish": "rm -fr dist/"
 	},
 	"dependencies": {
 		"ansi-escapes": "3.1.0",
