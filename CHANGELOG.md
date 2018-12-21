@@ -1,3 +1,7 @@
+## [0.5.7](https://github.com/jokio/jok-cli/compare/v0.5.3...v0.5.7) (2018-12-21)
+
+
+
 ## [0.5.7](https://github.com/jokio/jok-cli/compare/v0.5.0...v0.5.7) (2018-12-21)
 
 
