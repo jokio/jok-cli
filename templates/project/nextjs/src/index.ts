@@ -1,7 +1,7 @@
 import * as Express from 'express'
 import * as nextjslib from 'next'
 
-function run({ port }) {
+async function run({ port }) {
 	const express = Express()
 
 	const nextApp = nextjslib({
@@ -11,12 +11,12 @@ function run({ port }) {
 
 	const nextHandler = nextApp.getRequestHandler()
 
-	return nextApp.prepare().then(() => {
-		express.get('*', (req, res) => nextHandler(req, res))
+	await nextApp.prepare()
 
-		express.listen(port, () => {
-			console.log(`express started at: http://localhost:${port}`)
-		})
+	express.get('*', (req, res) => nextHandler(req, res))
+
+	express.listen(port, () => {
+		console.log(`express started at: http://localhost:${port}`)
 	})
 }
 
