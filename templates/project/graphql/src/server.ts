@@ -32,7 +32,7 @@ export class ApolloServer extends ApolloServerBase {
 	}) {
 		super(config)
 		this.cors = config && config.cors
-		this.express = (config && config.express) || express()
+		this.express = (config && config.express) || (express && express())
 	}
 
 	private createServerInfo(
