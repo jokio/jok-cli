@@ -1,3 +1,17 @@
+## [0.5.7](https://github.com/jokio/jok-cli/compare/v0.5.0...v0.5.7) (2018-12-21)
+
+
+### Bug Fixes
+
+* change log ([4c9797b](https://github.com/jokio/jok-cli/commit/4c9797b))
+
+
+### Features
+
+* add changelog file ([eff750b](https://github.com/jokio/jok-cli/commit/eff750b))
+
+
+
 # [0.5.0](https://github.com/jokio/jok-cli/compare/v0.4.1...v0.5.0) (2018-12-21)
 
 
