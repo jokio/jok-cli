@@ -16,7 +16,8 @@
 		"postpublish": "yarn cleanup"
 	},
 	"files": [
-		"dist"
+		"dist",
+		"templates"
 	],
 	"dependencies": {
 		"ansi-escapes": "3.1.0",

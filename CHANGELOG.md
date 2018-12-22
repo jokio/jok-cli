@@ -1,3 +1,12 @@
+## [0.5.15](https://github.com/jokio/jok-cli/compare/v0.5.14...v0.5.15) (2018-12-22)
+
+
+### Bug Fixes
+
+* package.json, add dist in files ([acbfa8a](https://github.com/jokio/jok-cli/commit/acbfa8a))
+
+
+
 ## [0.5.12](https://github.com/jokio/jok-cli/compare/v0.5.9...v0.5.12) (2018-12-21)
 
 
