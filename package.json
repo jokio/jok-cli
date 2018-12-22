@@ -13,7 +13,7 @@
 		"build": "tsc",
 		"cleanup": "rm -fr dist/",
 		"prepublish": "yarn build && standard-changelog",
-		"postpublish": "yarn cleanup && git add . && git commit -m 'chore: bump version'"
+		"postpublish": "yarn cleanup"
 	},
 	"files": [
 		"dist",
