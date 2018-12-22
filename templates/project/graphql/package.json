@@ -16,7 +16,7 @@
 		"express": "4.16.4",
 		"graphql": "14.0.2",
 		"graphql-voyager": "1.0.0-rc.26",
-		"jokio": "0.4.0"
+		"jokio": "0.4.1"
 	},
 	"devDependencies": {
 		"@types/jest": "23.3.10",

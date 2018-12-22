@@ -12,7 +12,7 @@
 		"build": "tsc"
 	},
 	"dependencies": {
-		"jokio": "0.4.0"
+		"jokio": "0.4.1"
 	},
 	"devDependencies": {
 		"@types/jest": "23.3.10",
