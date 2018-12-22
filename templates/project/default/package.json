@@ -11,8 +11,11 @@
 		"dev": "nodemon",
 		"build": "tsc"
 	},
+	"files": [
+		"dist"
+	],
 	"dependencies": {
-		"jokio": "0.4.1"
+		"jokio": "0.4.2"
 	},
 	"devDependencies": {
 		"@types/jest": "23.3.10",
