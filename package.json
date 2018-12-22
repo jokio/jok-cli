@@ -11,7 +11,7 @@
 		"test": "ts-node ./node_modules/jokio/src/_test",
 		"dev": "nodemon",
 		"build": "tsc",
-		"after": "rm -fr dist/"
+		"cleanup": "rm -fr dist/"
 	},
 	"dependencies": {
 		"ansi-escapes": "3.1.0",
