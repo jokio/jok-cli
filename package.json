@@ -7,11 +7,13 @@
 	"types": "dist/program.d.js",
 	"bin": "./dist/program.js",
 	"scripts": {
-		"start": "ts-node src",
+		"start": "node dist",
 		"test": "ts-node ./node_modules/jokio/src/_test",
 		"dev": "nodemon",
 		"build": "tsc",
-		"cleanup": "rm -fr dist/"
+		"cleanup": "rm -fr dist/",
+		"prepublish": "yarn build && standard-changelog",
+		"postpublish": "yarn cleanup"
 	},
 	"files": [
 		"dist"
