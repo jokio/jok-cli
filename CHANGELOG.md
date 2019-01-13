@@ -1,3 +1,14 @@
+# [0.6.0](https://github.com/jokio/jok-cli/compare/v0.5.16...v0.6.0) (2019-01-13)
+
+
+### Features
+
+* handle additional scalar types and describe them as any ([6d89e36](https://github.com/jokio/jok-cli/commit/6d89e36))
+* handle code generation for graphql interfaces ([611abe0](https://github.com/jokio/jok-cli/commit/611abe0))
+* update fragment parameter in api to graphql fragment ([42b5ebf](https://github.com/jokio/jok-cli/commit/42b5ebf))
+
+
+
 ## [0.5.19](https://github.com/jokio/jok-cli/compare/v0.5.16...v0.5.19) (2019-01-13)
 
 
