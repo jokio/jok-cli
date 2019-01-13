@@ -46,13 +46,13 @@ export default function (field: IntrospectionField, types: IntrospectionType[]) 
 
 	const method = renderMethod({
 		methodName,
+		fragmentName,
 		hasProps: hasInputs,
 		propsType,
 		renderContent: () =>
 			// Render Query
 			renderFragment(type) +
 			renderSubscription({
-				fragmentName,
 				graphqlTypeName: returnGraphqlTypeName,
 				hasFragment: hasResultType,
 				queryName,

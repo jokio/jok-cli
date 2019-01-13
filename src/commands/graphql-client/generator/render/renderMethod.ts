@@ -1,6 +1,7 @@
 
 export default function ({
 	methodName,
+	fragmentName,
 	hasProps,
 	propsType,
 	renderContent,
@@ -9,6 +10,7 @@ export default function ({
 		return `
 	${methodName}(
 		fragment?: string,
+		fragmentName: string = '${fragmentName}',
 		defaultOptions?: GraphqlCallOptions
 	) {
 	${renderContent()}
@@ -20,6 +22,7 @@ export default function ({
 	${methodName}(
 		props: ${propsType},
 		fragment?: string,
+		fragmentName: string = '${fragmentName}',
 		defaultOptions?: GraphqlCallOptions
 	) {
 	${renderContent()}

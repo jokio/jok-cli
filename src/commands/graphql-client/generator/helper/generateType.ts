@@ -93,6 +93,10 @@ function scalarType(type: IntrospectionScalarType) {
 			tsType = 'number'
 			break
 
+		case 'Float':
+			tsType = 'number'
+			break
+
 		case 'Boolean':
 			tsType = 'boolean'
 			break
