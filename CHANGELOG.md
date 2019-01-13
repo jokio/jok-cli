@@ -1,40 +1,9 @@
-## [0.5.18](https://github.com/jokio/jok-cli/compare/v0.5.16...v0.5.18) (2019-01-13)
+## [0.5.19](https://github.com/jokio/jok-cli/compare/v0.5.16...v0.5.19) (2019-01-13)
 
 
+### Features
 
-## [0.5.18](https://github.com/jokio/jok-cli/compare/v0.5.16...v0.5.18) (2019-01-13)
-
-
-
-## [0.5.18](https://github.com/jokio/jok-cli/compare/v0.5.16...v0.5.18) (2019-01-13)
-
-
-
-## [0.5.18](https://github.com/jokio/jok-cli/compare/v0.5.16...v0.5.18) (2019-01-13)
-
-
-
-## [0.5.18](https://github.com/jokio/jok-cli/compare/v0.5.16...v0.5.18) (2019-01-13)
-
-
-
-## [0.5.18](https://github.com/jokio/jok-cli/compare/v0.5.16...v0.5.18) (2019-01-13)
-
-
-
-## [0.5.18](https://github.com/jokio/jok-cli/compare/v0.5.16...v0.5.18) (2019-01-13)
-
-
-
-## [0.5.18](https://github.com/jokio/jok-cli/compare/v0.5.16...v0.5.18) (2018-12-22)
-
-
-
-## [0.5.17](https://github.com/jokio/jok-cli/compare/v0.5.16...v0.5.17) (2018-12-22)
-
-
-
-## [0.5.16](https://github.com/jokio/jok-cli/compare/v0.5.15...v0.5.16) (2018-12-22)
+* update fragment parameter in api to graphql fragment ([42b5ebf](https://github.com/jokio/jok-cli/commit/42b5ebf))
 
 
 
