@@ -115,8 +115,9 @@ function scalarType(type: IntrospectionScalarType) {
 			break
 
 		default:
-			console.log('MISSED SCALAR TYPE', typeName)
-			return ''
+			tsType = 'any'
+			console.log('FOUND ADDITIONAL SCALAR TYPE', typeName)
+			break
 	}
 
 	return `type ${typeName} = ${tsType}`
