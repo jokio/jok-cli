@@ -1,6 +1,7 @@
 import {
 	IntrospectionEnumType,
 	IntrospectionInputObjectType,
+	IntrospectionInterfaceType,
 	IntrospectionObjectType,
 	IntrospectionScalarType,
 	IntrospectionType,
@@ -16,6 +17,7 @@ export default function (type: IntrospectionType) {
 
 	switch (type.kind) {
 		case 'OBJECT':
+		case 'INTERFACE':
 			return objectType(type)
 
 		case 'INPUT_OBJECT':
@@ -31,12 +33,12 @@ export default function (type: IntrospectionType) {
 			return unionType(type)
 
 		default:
-			console.log('MISSED GENERATION FOR', type.kind, type.name)
+			console.log('MISSED GENERATION FOR', type)
 			return
 	}
 }
 
-function objectType(type: IntrospectionObjectType) {
+function objectType(type: IntrospectionObjectType | IntrospectionInterfaceType) {
 	const fields = type.fields
 		.map(x => getTypescriptField(x.name, x.type, { isNull: false, isList: false }))
 		.map(x => `\t${x}`)
@@ -116,7 +118,6 @@ function scalarType(type: IntrospectionScalarType) {
 
 		default:
 			tsType = 'any'
-			console.log('FOUND ADDITIONAL SCALAR TYPE', typeName)
 			break
 	}
 
