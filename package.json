@@ -57,20 +57,7 @@
 		"url": "https://github.com/jokio/jok-cli"
 	},
 	"release": {
-		"branch": "master",
-		"plugins": [
-			"@semantic-release/commit-analyzer",
-			"@semantic-release/release-notes-generator",
-			"@semantic-release/npm",
-			[
-				"@semantic-release/github",
-				{
-					"assets": [
-						"dist/**"
-					]
-				}
-			]
-		]
+		"branch": "master"
 	},
 	"resolutions": {
 		"**/event-stream": "^4.0.1"
