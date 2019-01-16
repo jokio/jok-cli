@@ -56,6 +56,9 @@
 		"type": "git",
 		"url": "https://github.com/jokio/jok-cli"
 	},
+	"release": {
+		"branch": "master"
+	},
 	"resolutions": {
 		"**/event-stream": "^4.0.1"
 	},
