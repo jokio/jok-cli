@@ -5,9 +5,7 @@ jobs:
       - image: circleci/node:8
     steps:
       - checkout
-      - run: sudo yarn global add semantic-release
-      - run: sudo yarn global add @semantic-release/changelog
-      - run: sudo yarn global add @semantic-release/git
+      - run: sudo yarn global add semantic-release @semantic-release/changelog @semantic-release/git
       - run: yarn install
       - run: yarn test
       - run: semantic-release
