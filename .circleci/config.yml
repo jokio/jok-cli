@@ -12,7 +12,7 @@ jobs:
 
 workflows:
   version: 2
-  my-workflow:
+  main-workflow:
     jobs:
       - build:
           context: deployment
