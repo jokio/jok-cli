@@ -11,31 +11,43 @@ export default function ({
 // types
 ${generatedOtherTypes}
 
-${generatedQuery}
-${generatedMutation}
-${generatedSubscription}
+${generatedQuery || ''}
+${generatedMutation || ''}
+${generatedSubscription || ''}
 
 interface GraphqlCallOptions {
 	fetchPolicy?: FetchPolicy
 }
 
 interface DefaultOptions {
-	query?: GraphqlCallOptions
-	mutation?: GraphqlCallOptions
-	subscription?: GraphqlCallOptions
+	${generatedQuery ? 'query?: GraphqlCallOptions' : ''}
+	${generatedMutation ? 'mutation?: GraphqlCallOptions' : ''}
+	${generatedSubscription ? 'subscription?: GraphqlCallOptions' : ''}
 }
 
 export interface Client {
-	query: Query
-	mutation: Mutation
-	subscription: Subscription
+	${generatedQuery ? 'query: Query' : ''}
+	${generatedMutation ? 'mutation: Mutation' : ''}
+	${generatedSubscription ? 'subscription: Subscription' : ''}
 }
 
 export default function (client: ApolloClient<any>, defaultOptions: DefaultOptions = {}): Client {
 	return {
-		query: new Query(client, defaultOptions.query || {}),
-		mutation: new Mutation(client, defaultOptions.mutation || {}),
-		subscription: new Subscription(client, defaultOptions.subscription || {}),
+		${
+		generatedQuery
+			? 'query: new Query(client, defaultOptions.query || {}),'
+			: ''
+		}
+		${
+		generatedMutation
+			? 'mutation: new Mutation(client, defaultOptions.mutation || {}),'
+			: ''
+		}
+		${
+		generatedSubscription
+			? 'subscription: new Subscription(client, defaultOptions.subscription || {}),'
+			: ''
+		}
 	}
 }
 `
