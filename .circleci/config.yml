@@ -2,7 +2,7 @@ version: 2
 jobs:
   build:
     docker:
-      - image: circleci/node:8
+      - image: circleci/node:11
     steps:
       - checkout
       - run: sudo yarn global add semantic-release
@@ -12,7 +12,7 @@ jobs:
 
 workflows:
   version: 2
-  main-workflow:
+  main:
     jobs:
       - build:
           context: deployment
