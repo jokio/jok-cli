@@ -1,3 +1,19 @@
+## [0.6.1](https://github.com/jokio/jok-cli/compare/v0.5.16...v0.6.1) (2019-01-16)
+
+
+### Bug Fixes
+
+* **graphql-client:** fix use case when schema doesn't includes mutation/subscription ([04f27bb](https://github.com/jokio/jok-cli/commit/04f27bb)), closes [#2](https://github.com/jokio/jok-cli/issues/2)
+
+
+### Features
+
+* handle additional scalar types and describe them as any ([6d89e36](https://github.com/jokio/jok-cli/commit/6d89e36))
+* handle code generation for graphql interfaces ([611abe0](https://github.com/jokio/jok-cli/commit/611abe0))
+* update fragment parameter in api to graphql fragment ([42b5ebf](https://github.com/jokio/jok-cli/commit/42b5ebf))
+
+
+
 # [0.6.0](https://github.com/jokio/jok-cli/compare/v0.5.16...v0.6.0) (2019-01-13)
 
 
