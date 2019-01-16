@@ -1,3 +1,10 @@
+## [0.7.1](https://github.com/jokio/jok-cli/compare/v0.7.0...v0.7.1) (2019-01-16)
+
+
+### Bug Fixes
+
+* workflow name in CI ([ed2457e](https://github.com/jokio/jok-cli/commit/ed2457e))
+
 ## [0.6.1](https://github.com/jokio/jok-cli/compare/v0.5.16...v0.6.1) (2019-01-16)
 
 
@@ -96,6 +103,3 @@
 
 
 ## 0.4.1 (2018-12-21)
-
-
-
