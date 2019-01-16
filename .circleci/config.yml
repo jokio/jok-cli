@@ -6,6 +6,7 @@ jobs:
     steps:
       - checkout
       - run: sudo yarn global add semantic-release
+      - run: sudo yarn global add @semantic-release/changelog
       - run: yarn install
       - run: yarn test
       - run: semantic-release
