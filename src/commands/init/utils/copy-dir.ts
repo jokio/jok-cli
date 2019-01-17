@@ -13,6 +13,7 @@ export default function copyDir(opts) {
 
 	const files = [
 		{ from: './_gitignore', to: './.gitignore' },
+		{ from: './_package.json', to: './package.json' },
 	]
 
 	return new Promise(function (resolve, reject) {
