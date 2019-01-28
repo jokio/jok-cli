@@ -10,8 +10,13 @@ export default function (introspectionSchema: IntrospectionSchema) {
 		types,
 	}: IntrospectionSchema = introspectionSchema
 
-	const mutationTypeName = introspectionSchema.mutationType ? introspectionSchema.mutationType.name : null
-	const subscriptionTypeName = introspectionSchema.subscriptionType ? introspectionSchema.subscriptionType.name : null
+	const mutationTypeName = introspectionSchema.mutationType
+		? introspectionSchema.mutationType.name
+		: null
+
+	const subscriptionTypeName = introspectionSchema.subscriptionType
+		? introspectionSchema.subscriptionType.name
+		: null
 
 	const queryType = <IntrospectionType> types.find(x => x.name === queryTypeName)
 	const mutationType = <IntrospectionType> types.find(x => x.name === mutationTypeName)

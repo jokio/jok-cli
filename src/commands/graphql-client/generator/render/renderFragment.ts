@@ -16,7 +16,7 @@ ${fieldNames.join('\n')}
 `
 }
 
-function isKindAllowed(type: IntrospectionOutputTypeRef) {
+export function isKindAllowed(type: IntrospectionOutputTypeRef) {
 	switch (type.kind) {
 		case 'ENUM':
 		case 'SCALAR':

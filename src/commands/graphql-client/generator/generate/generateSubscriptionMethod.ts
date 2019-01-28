@@ -42,16 +42,19 @@ export default function (field: IntrospectionField, types: IntrospectionType[]) 
 	const variablesDeclarationString = buildVariablesDeclarationString(inputs)
 	const variablesString = buildVariablesPassString(inputs)
 
-	const type = <IntrospectionType>types.find(x => x.name === returnGraphqlTypeName)
+	const type = <IntrospectionType> types.find(x => x.name === returnGraphqlTypeName)
 
 	const method = renderMethod({
 		methodName,
 		fragmentName,
 		hasProps: hasInputs,
 		propsType,
+		hasResultType,
 		renderContent: () =>
 			// Render Query
-			renderFragment(type) +
+			(hasResultType
+				? renderFragment(type)
+				: '') +
 			renderSubscription({
 				graphqlTypeName: returnGraphqlTypeName,
 				hasFragment: hasResultType,

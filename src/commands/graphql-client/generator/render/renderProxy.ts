@@ -8,6 +8,8 @@ export default function ({
 }) {
 	return `${renderImports()}
 
+// tslint:disable
+
 // types
 ${generatedOtherTypes}
 
