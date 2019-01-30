@@ -12,8 +12,9 @@ import renderApolloCall from '../render/renderApolloCall'
 import renderFragment from '../render/renderFragment'
 import renderMethod from '../render/renderMethod'
 import renderMutation from '../render/renderMutation'
+import renderOptions from '../render/renderOptions'
 
-export default function (field: IntrospectionField, types: IntrospectionType[]) {
+export default function (field: IntrospectionField, types: IntrospectionType[], generateDefaultFragments: boolean) {
 
 	const queryName = field.name
 	const propsType = getTypescriptPropsTypeName('Mutation', queryName)
@@ -46,17 +47,17 @@ export default function (field: IntrospectionField, types: IntrospectionType[]) 
 
 	const method = renderMethod({
 		methodName,
-		fragmentName,
+		generateDefaultFragments,
 		hasProps: hasInputs,
 		propsType,
 		hasResultType,
 		renderContent: () =>
 			// Render Query
+			renderOptions(fragmentName, hasResultType) +
 			(hasResultType
-				? renderFragment(type)
+				? renderFragment(type, generateDefaultFragments, returnGraphqlTypeName)
 				: '') +
 			renderMutation({
-				graphqlTypeName: returnGraphqlTypeName,
 				hasFragment: hasResultType,
 				queryName,
 				variablesDeclarationString,

@@ -10,6 +10,7 @@ import renderRootTypeClass from './render/renderRootTypeClass'
 export default (
 	typeName: RootType | 'watchQuery',
 	otherTypes: IntrospectionType[],
+	generateDefaultFragments: boolean,
 ) => (queryType: IntrospectionType) => {
 
 	if (!queryType ||
@@ -30,7 +31,7 @@ export default (
 	const generateMethod = generateOptions[typeName]
 
 	const methodsAndProps = queryType.fields
-		.map(x => generateMethod(x, otherTypes))
+		.map(x => generateMethod(x, otherTypes, generateDefaultFragments))
 
 	const methodProps = methodsAndProps
 		.map(x => x.props)

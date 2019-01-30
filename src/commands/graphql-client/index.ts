@@ -5,12 +5,14 @@ import run from './run'
 export default function ({
 	endpointUrl,
 	output: outputUrl,
+	generateDefaultFragments = false,
 }) {
 	const stopSpinner = consoleOutput.wait('Fetching graphql endpoint (schema introspection)')
 
 	run({
 		graphqlUrl: endpointUrl,
 		outputUrl,
+		generateDefaultFragments,
 	}).then(async () => {
 		let isTslintApplied = false
 

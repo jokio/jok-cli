@@ -5,9 +5,10 @@ import saveGeneratedFile from './integration/saveGeneratedFile'
 export default async function ({
 	graphqlUrl,
 	outputUrl,
+	generateDefaultFragments,
 }) {
 	const introspectionSchema = await getIntropsectionSchema(graphqlUrl)
-	const output = generateProxy(introspectionSchema)
+	const output = generateProxy(introspectionSchema, generateDefaultFragments)
 
 	saveGeneratedFile(outputUrl, output)
 }

@@ -19,6 +19,11 @@ ${generatedWatchQuery || ''}
 ${generatedMutation || ''}
 ${generatedSubscription || ''}
 
+
+interface FragmentOptions {
+	fragmentName?: string
+}
+
 interface GraphqlCallOptions {
 	fetchPolicy?: FetchPolicy
 }

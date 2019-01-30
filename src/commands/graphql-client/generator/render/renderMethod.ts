@@ -1,23 +1,25 @@
 
 export default function ({
 	methodName,
-	fragmentName,
+	generateDefaultFragments,
 	hasProps,
 	propsType,
 	renderContent,
 	hasResultType,
 }) {
-	const fragmentProps = hasResultType
-		? `
-		fragment?: string,
-		fragmentName: string = '${fragmentName}',
-	`
+	const fragmentRequiredSymbol = generateDefaultFragments
+		? '?'
+		: ''
+
+	const fragmentProp = hasResultType
+		? `fragment${fragmentRequiredSymbol}: string,`
 		: ''
 
 	if (!hasProps) {
 		return `
-	${methodName}(${fragmentProps}
-		defaultOptions?: GraphqlCallOptions,
+	${methodName}(
+		${fragmentProp}
+		options?: GraphqlCallOptions & FragmentOptions,
 	) {
 	${renderContent()}
 	}`
@@ -26,8 +28,9 @@ export default function ({
 	// with props
 	return `
 	${methodName}(
-		props: ${propsType},${fragmentProps}
-		defaultOptions?: GraphqlCallOptions,
+		props: ${propsType},
+		${fragmentProp}
+		options?: GraphqlCallOptions & FragmentOptions,
 	) {
 	${renderContent()}
 	}`

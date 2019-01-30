@@ -11,9 +11,10 @@ import generateResultTypeFields from '../helper/generateResultTypeFields'
 import renderApolloCall from '../render/renderApolloCall'
 import renderFragment from '../render/renderFragment'
 import renderMethod from '../render/renderMethod'
+import renderOptions from '../render/renderOptions'
 import renderSubscription from '../render/renderSubscription'
 
-export default function (field: IntrospectionField, types: IntrospectionType[]) {
+export default function (field: IntrospectionField, types: IntrospectionType[], generateDefaultFragments: boolean) {
 
 	const queryName = field.name
 	const propsType = getTypescriptPropsTypeName('Subscription', queryName)
@@ -46,17 +47,17 @@ export default function (field: IntrospectionField, types: IntrospectionType[]) 
 
 	const method = renderMethod({
 		methodName,
-		fragmentName,
+		generateDefaultFragments,
 		hasProps: hasInputs,
 		propsType,
 		hasResultType,
 		renderContent: () =>
 			// Render Query
+			renderOptions(fragmentName, hasResultType) +
 			(hasResultType
-				? renderFragment(type)
+				? renderFragment(type, generateDefaultFragments, returnGraphqlTypeName)
 				: '') +
 			renderSubscription({
-				graphqlTypeName: returnGraphqlTypeName,
 				hasFragment: hasResultType,
 				queryName,
 				variablesDeclarationString,

@@ -44,7 +44,8 @@ program
 	.description('Generate graphql client')
 	.option('-e, --endpointUrl <endpointUrl>', 'graphql endpoint url', /.+/i)
 	.option('-o, --output <output>', 'result file address', /.+/i)
-	.action(({ endpointUrl, output }) => {
+	.option('--defaultFragments', 'generate default fragments')
+	.action(({ endpointUrl, output, defaultFragments }) => {
 		if (!endpointUrl || !output) {
 			console.warn(`${chalk.red('Missing options')} please pass --endpointUrl and --output`)
 			return
@@ -53,6 +54,7 @@ program
 		graphqlClientCommand({
 			endpointUrl,
 			output,
+			generateDefaultFragments: defaultFragments,
 		})
 	})
 	.on('--help', () => {

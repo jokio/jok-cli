@@ -1,6 +1,5 @@
 export default function ({
 	hasFragment,
-	graphqlTypeName,
 	queryName,
 	variablesDeclarationString,
 	variablesString,
@@ -14,8 +13,7 @@ export default function ({
 		\``
 	}
 
-	return `		const finishedFragment = fragment || \`fragment \${fragmentName} on ${graphqlTypeName} \${localFragment}\`
-
+	return `
 		// build query
 		const query = gql2\`
 		query ${queryName}${variablesDeclarationString} {

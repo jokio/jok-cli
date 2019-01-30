@@ -4,7 +4,10 @@ import generateRootType from './generateRootType'
 import generateType from './helper/generateType'
 import renderProxy from './render/renderProxy'
 
-export default function (introspectionSchema: IntrospectionSchema) {
+export default function (
+	introspectionSchema: IntrospectionSchema,
+	generateDefaultFragments: boolean,
+) {
 	const {
 		queryType: { name: queryTypeName },
 		types,
@@ -29,10 +32,11 @@ export default function (introspectionSchema: IntrospectionSchema) {
 	)
 
 	// start generation
-	const generatedQuery = generateRootType(RootType.Query, otherTypes)(queryType)
-	const generatedWatchQuery = generateRootType('watchQuery', otherTypes)(queryType)
-	const generatedMutation = generateRootType(RootType.Mutation, otherTypes)(mutationType)
-	const generatedSubscription = generateRootType(RootType.Subscription, otherTypes)(subscriptionType)
+	const generatedQuery = generateRootType(RootType.Query, otherTypes, generateDefaultFragments)(queryType)
+	const generatedWatchQuery = generateRootType('watchQuery', otherTypes, generateDefaultFragments)(queryType)
+	const generatedMutation = generateRootType(RootType.Mutation, otherTypes, generateDefaultFragments)(mutationType)
+	const generatedSubscription =
+		generateRootType(RootType.Subscription, otherTypes, generateDefaultFragments)(subscriptionType)
 
 	const generatedOtherTypes = otherTypes
 		.sort(sortTypesByKind)
