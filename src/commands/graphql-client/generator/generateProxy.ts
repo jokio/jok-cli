@@ -30,6 +30,7 @@ export default function (introspectionSchema: IntrospectionSchema) {
 
 	// start generation
 	const generatedQuery = generateRootType(RootType.Query, otherTypes)(queryType)
+	const generatedWatchQuery = generateRootType('watchQuery', otherTypes)(queryType)
 	const generatedMutation = generateRootType(RootType.Mutation, otherTypes)(mutationType)
 	const generatedSubscription = generateRootType(RootType.Subscription, otherTypes)(subscriptionType)
 
@@ -41,6 +42,7 @@ export default function (introspectionSchema: IntrospectionSchema) {
 
 	return renderProxy({
 		generatedQuery,
+		generatedWatchQuery,
 		generatedMutation,
 		generatedSubscription,
 		generatedOtherTypes,

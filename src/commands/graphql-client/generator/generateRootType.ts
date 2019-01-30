@@ -4,9 +4,14 @@ import { RootType } from '../utils/rootType'
 import generateMutationMethod from './generate/generateMutationMethod'
 import generateQueryMethod from './generate/generateQueryMethod'
 import generateSubscriptionMethod from './generate/generateSubscriptionMethod'
+import generateWatchQueryMethod from './generate/generateWatchQueryMethod'
 import renderRootTypeClass from './render/renderRootTypeClass'
 
-export default (typeName: RootType, otherTypes: IntrospectionType[]) => (queryType: IntrospectionType) => {
+export default (
+	typeName: RootType | 'watchQuery',
+	otherTypes: IntrospectionType[],
+) => (queryType: IntrospectionType) => {
+
 	if (!queryType ||
 		(queryType.kind !== 'OBJECT') ||
 		!queryType.fields ||
@@ -17,6 +22,7 @@ export default (typeName: RootType, otherTypes: IntrospectionType[]) => (queryTy
 
 	const generateOptions = {
 		[RootType.Query.toString()]: generateQueryMethod,
+		['watchQuery']: generateWatchQueryMethod,
 		[RootType.Mutation.toString()]: generateMutationMethod,
 		[RootType.Subscription.toString()]: generateSubscriptionMethod,
 	}

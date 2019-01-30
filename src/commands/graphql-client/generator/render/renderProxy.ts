@@ -3,6 +3,7 @@ import renderImports from './renderImports'
 export default function ({
 	generatedOtherTypes,
 	generatedQuery,
+	generatedWatchQuery,
 	generatedMutation,
 	generatedSubscription,
 }) {
@@ -14,6 +15,7 @@ export default function ({
 ${generatedOtherTypes}
 
 ${generatedQuery || ''}
+${generatedWatchQuery || ''}
 ${generatedMutation || ''}
 ${generatedSubscription || ''}
 
@@ -23,12 +25,14 @@ interface GraphqlCallOptions {
 
 interface DefaultOptions {
 	${generatedQuery ? 'query?: GraphqlCallOptions' : ''}
+	${generatedWatchQuery ? 'watchQuery?: GraphqlCallOptions' : ''}
 	${generatedMutation ? 'mutation?: GraphqlCallOptions' : ''}
 	${generatedSubscription ? 'subscription?: GraphqlCallOptions' : ''}
 }
 
 export interface Client {
 	${generatedQuery ? 'query: Query' : ''}
+	${generatedWatchQuery ? 'watchQuery: WatchQuery' : ''}
 	${generatedMutation ? 'mutation: Mutation' : ''}
 	${generatedSubscription ? 'subscription: Subscription' : ''}
 }
@@ -38,6 +42,11 @@ export default function (client: ApolloClient<any>, defaultOptions: DefaultOptio
 		${
 		generatedQuery
 			? 'query: new Query(client, defaultOptions.query || {}),'
+			: ''
+		}
+		${
+		generatedWatchQuery
+			? 'watchQuery: new WatchQuery(client, defaultOptions.query || {}),'
 			: ''
 		}
 		${
@@ -51,6 +60,11 @@ export default function (client: ApolloClient<any>, defaultOptions: DefaultOptio
 			: ''
 		}
 	}
+}
+
+function fixObservable(obs: any) {
+	(obs as any)[observable] = () => obs
+	return obs
 }
 `
 }

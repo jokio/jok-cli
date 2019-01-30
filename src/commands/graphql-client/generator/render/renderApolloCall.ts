@@ -5,13 +5,18 @@ export default function ({
 	hasVariables,
 	queryName,
 	returnType,
+	isWatchQuery = false,
 }: Props) {
 
-	const methodName = {
+	let methodName = {
 		[RootType.Query]: 'query',
 		[RootType.Mutation]: 'mutate',
 		[RootType.Subscription]: 'subscribe',
 	}[rootType]
+
+	if (isWatchQuery && (rootType === RootType.Query)) {
+		methodName = 'watchQuery'
+	}
 
 	const renderOptions = `
 		const { fetchPolicy } = defaultOptions || this.defaultOptions
@@ -32,6 +37,32 @@ export default function ({
 
 			return <${returnType}><any>x.data['${queryName}']
 		})`
+	}
+
+	if (isWatchQuery) {
+		return `
+		${renderOptions}
+		const zenObs = this.client.watchQuery<${returnType}>({
+			query,${hasVariables ? `
+			variables: props,` : ''}
+			fetchPolicy,
+		})
+
+		return from(fixObservable(zenObs)).pipe(
+			map((result: any) => {
+				// if error, throw it
+				if (result.errors) {
+					throw new Error(<any>result.errors)
+				}
+
+				if (!result.data) {
+					return <${returnType}><any>null
+				}
+
+				// cast the result and return (need any for scalar types, to avoid compilation error)
+				return <${returnType}><any>result.data['${queryName}']
+			})
+		)`
 	}
 
 	return `
@@ -61,4 +92,5 @@ interface Props {
 	hasVariables: boolean
 	queryName: string
 	returnType: any
+	isWatchQuery?: boolean
 }

@@ -7,7 +7,7 @@ export default function ({
 }) {
 	if (!hasFragment) {
 		return `	// build query
-		const subscription = gql\`
+		const subscription = gql2\`
 		subscription ${queryName}${variablesDeclarationString} {
 			${queryName}${variablesString}
 		}
@@ -17,7 +17,7 @@ export default function ({
 	return `		const finishedFragment = fragment || \`fragment \${fragmentName} on ${graphqlTypeName} \${localFragment}\`
 
 		// build query
-		const subscription = gql\`
+		const subscription = gql2\`
 		subscription ${queryName}${variablesDeclarationString} {
 			${queryName}${variablesString} {
 				...\${fragmentName}
