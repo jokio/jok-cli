@@ -1,6 +1,7 @@
 
 # Jok CLI 
-[![engine: jokio](https://img.shields.io/badge/engine-%F0%9F%83%8F%20jok-44cc11.svg)](https://github.com/jokio/jok-cli)
+[![platform: jokio](https://img.shields.io/badge/platform-%F0%9F%83%8F%20jok-44cc11.svg)](https://github.com/jokio/jok-cli)
+[![npm version](https://badge.fury.io/js/jok.svg)](https://badge.fury.io/js/jok)
 
 
 Bundle of utility functions for code generation, related to nodejs and graphql
