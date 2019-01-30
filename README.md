@@ -30,7 +30,7 @@ _Note: `jok init` command is next version of [create-jokio-app](https://github.c
 <br/>
 <br/>
 
-### `graphql-client` _(beta)_
+### `graphql-client`
 Generate sdk for graphql remote endpoint in front-end projects.
 
 Features:
