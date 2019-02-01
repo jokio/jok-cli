@@ -7,7 +7,7 @@ export default function (fragmentName, hasResultType) {
 	return `
 		const mergedOptions = {
 			...<any>this.defaultOptions,
-			options,
+			...options,
 		}
 
 		${fragmentNameSection}
