@@ -40,13 +40,14 @@ interface FragmentOptions {
 
 interface GraphqlCallOptions {
 	fetchPolicy?: FetchPolicy
+	errorPolicy?: ErrorPolicy
 }
 
 interface DefaultOptions {
 	${generatedQuery ? 'query?: GraphqlCallOptions' : ''}
 	${generatedWatchQuery ? 'watchQuery?: GraphqlCallOptions' : ''}
-	${generatedMutation ? 'mutation?: GraphqlCallOptions' : ''}
-	${generatedSubscription ? 'subscription?: GraphqlCallOptions' : ''}
+	${generatedMutation ? `mutation?: Omit<GraphqlCallOptions, 'fetchPolicy'>` : ''}
+	${generatedSubscription ? `subscription?: Omit<GraphqlCallOptions, 'errorPolicy'>` : ''}
 }
 
 export interface Client {
