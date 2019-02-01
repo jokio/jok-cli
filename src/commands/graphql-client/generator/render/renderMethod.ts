@@ -1,5 +1,7 @@
+import { RootType } from '../../utils/rootType'
 
 export default function ({
+	rootType,
 	methodName,
 	generateDefaultFragments,
 	hasProps,
@@ -7,6 +9,14 @@ export default function ({
 	renderContent,
 	hasResultType,
 }) {
+
+	const omittedOptionsType = {
+		[RootType.Query]: 'OmittedQueryOptions',
+		'watchQuery': 'OmittedWatchQueryOptions',
+		[RootType.Mutation]: 'OmittedMutationOptions',
+		[RootType.Subscription]: 'OmittedSubscriptionOptions',
+	}[rootType]
+
 	const fragmentRequiredSymbol = generateDefaultFragments
 		? '?'
 		: ''
@@ -15,11 +25,15 @@ export default function ({
 		? `fragment${fragmentRequiredSymbol}: string,`
 		: ''
 
+	const fragmentType = hasResultType
+		? '& FragmentOptions'
+		: ''
+
 	if (!hasProps) {
 		return `
 	${methodName}(
 		${fragmentProp}
-		options?: GraphqlCallOptions & FragmentOptions,
+		options?: GraphqlCallOptions ${fragmentType} & ${omittedOptionsType},
 	) {
 	${renderContent()}
 	}`
@@ -30,7 +44,7 @@ export default function ({
 	${methodName}(
 		props: ${propsType},
 		${fragmentProp}
-		options?: GraphqlCallOptions & FragmentOptions,
+		options?: GraphqlCallOptions ${fragmentType} & ${omittedOptionsType},
 	) {
 	${renderContent()}
 	}`

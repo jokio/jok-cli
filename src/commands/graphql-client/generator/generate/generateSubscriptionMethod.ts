@@ -46,6 +46,7 @@ export default function (field: IntrospectionField, types: IntrospectionType[], 
 	const type = <IntrospectionType> types.find(x => x.name === returnGraphqlTypeName)
 
 	const method = renderMethod({
+		rootType: RootType.Subscription,
 		methodName,
 		generateDefaultFragments,
 		hasProps: hasInputs,

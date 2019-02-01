@@ -22,9 +22,9 @@ export default function ({
 		return `
 		// apollo call
 		const zenObs = this.client.${methodName}<${returnType}>({
+			...mergedOptions,
 			query: ${rootType},${hasVariables ? `
 			variables: props,` : ''}
-			fetchPolicy,
 		})
 
 		return from(fixObservable(zenObs)).pipe(
@@ -42,9 +42,9 @@ export default function ({
 	if (isWatchQuery) {
 		return `
 		const zenObs = this.client.watchQuery<${returnType}>({
+			...mergedOptions,
 			query,${hasVariables ? `
 			variables: props,` : ''}
-			fetchPolicy,
 		})
 
 		return from(fixObservable(zenObs)).pipe(
@@ -62,9 +62,9 @@ export default function ({
 	return `
 		// apollo call
 		return this.client.${methodName}({
+			...mergedOptions,
 			${rootType},${hasVariables ? `
 			variables: props,` : ''}
-			fetchPolicy,
 		}).then(result => {
 			// if error, throw it
 			if (result.errors) {

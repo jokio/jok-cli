@@ -19,6 +19,20 @@ ${generatedWatchQuery || ''}
 ${generatedMutation || ''}
 ${generatedSubscription || ''}
 
+// helper types
+type Omit<T, K extends keyof T> = Pick<T, Exclude<keyof T, K>>
+${generatedQuery ? `
+type OmittedQueryOptions = Omit<Partial<QueryOptions<OperationVariables>>, 'query' | 'variables'>
+type OmittedWatchQueryOptions = Omit<Partial<WatchQueryOptions<OperationVariables>>, 'variables' | 'query'>
+` : ''}
+${generatedMutation ? `
+type OmittedMutationOptions = Omit<Partial<MutationOptions<OperationVariables>>, 'mutation' | 'variables'>
+` : ''}
+${generatedSubscription ? `
+type OmittedSubscriptionOptions = Omit<Partial<SubscriptionOptions<OperationVariables>>, 'query' | 'variables'>
+` : ''}
+
+
 
 interface FragmentOptions {
 	fragmentName?: string

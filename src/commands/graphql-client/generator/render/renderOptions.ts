@@ -1,12 +1,15 @@
 export default function (fragmentName, hasResultType) {
 	const fragmentNameSection = hasResultType
 		? `
-			fragmentName = '${fragmentName}'`
+		const fragmentName = mergedOptions.fragmentName || '${fragmentName}'`
 		: ''
 
 	return `
-		const {
-			fetchPolicy,${fragmentNameSection}
-		} = options || <any>this.defaultOptions
+		const mergedOptions = {
+			...<any>this.defaultOptions,
+			options,
+		}
+
+		${fragmentNameSection}
 `
 }
