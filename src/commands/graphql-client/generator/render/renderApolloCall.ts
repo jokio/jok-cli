@@ -28,14 +28,7 @@ export default function ({
 		})
 
 		return from(fixObservable(zenObs)).pipe(
-			map((result: any) => {
-				if (!result.data) {
-					return <${returnType}><any>null
-				}
-
-				// cast the result and return (need any for scalar types, to avoid compilation error)
-				return <${returnType}><any>result.data['${queryName}']
-			})
+			map(result => getResultData<${returnType}>(result, '${queryName}'))
 		)`
 	}
 
@@ -48,14 +41,7 @@ export default function ({
 		})
 
 		return from(fixObservable(zenObs)).pipe(
-			map((result: any) => {
-				if (!result.data) {
-					return <${returnType}><any>null
-				}
-
-				// cast the result and return (need any for scalar types, to avoid compilation error)
-				return <${returnType}><any>result.data['${queryName}']
-			})
+			map(result => getResultData<${returnType}>(result, '${queryName}'))
 		)`
 	}
 
@@ -65,19 +51,7 @@ export default function ({
 			...mergedOptions,
 			${rootType},${hasVariables ? `
 			variables: props,` : ''}
-		}).then(result => {
-			// if error, throw it
-			if (result.errors) {
-				throw new Error(<any>result.errors)
-			}
-
-			if (!result.data) {
-				return <${returnType}><any>null
-			}
-
-			// cast the result and return (need any for scalar types, to avoid compilation error)
-			return <${returnType}><any>result.data['${queryName}']
-		})`
+		}).then(result => getResultData<${returnType}>(result, '${queryName}'))`
 }
 
 interface Props {

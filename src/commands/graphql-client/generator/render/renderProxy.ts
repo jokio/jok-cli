@@ -23,14 +23,11 @@ ${generatedSubscription || ''}
 type Omit<T, K extends keyof T> = Pick<T, Exclude<keyof T, K>>
 ${generatedQuery ? `
 type OmittedQueryOptions = Omit<Partial<QueryOptions<OperationVariables>>, 'query' | 'variables'>
-type OmittedWatchQueryOptions = Omit<Partial<WatchQueryOptions<OperationVariables>>, 'variables' | 'query'>
-` : ''}
+type OmittedWatchQueryOptions = Omit<Partial<WatchQueryOptions<OperationVariables>>, 'variables' | 'query'>` : ''}
 ${generatedMutation ? `
-type OmittedMutationOptions = Omit<Partial<MutationOptions<OperationVariables>>, 'mutation' | 'variables'>
-` : ''}
+type OmittedMutationOptions = Omit<Partial<MutationOptions<OperationVariables>>, 'mutation' | 'variables'>` : ''}
 ${generatedSubscription ? `
-type OmittedSubscriptionOptions = Omit<Partial<SubscriptionOptions<OperationVariables>>, 'query' | 'variables'>
-` : ''}
+type OmittedSubscriptionOptions = Omit<Partial<SubscriptionOptions<OperationVariables>>, 'query' | 'variables'>` : ''}
 
 
 
@@ -85,6 +82,20 @@ export default function (client: ApolloClient<any>, defaultOptions: DefaultOptio
 function fixObservable(obs: any) {
 	(obs as any)[observable] = () => obs
 	return obs
+}
+
+function getResultData<T>(result, dataFieldName) {
+	// if error, throw it
+	if (result.errors) {
+		throw new Error(<any>result.errors)
+	}
+
+	if (!result.data) {
+		return <T><any>null
+	}
+
+	// cast the result and return (need any for scalar types, to avoid compilation error)
+	return <T><any>result.data[dataFieldName]
 }
 `
 }
