@@ -6,5 +6,5 @@
 	"ignore": [
 		"src/**/*.spec.ts"
 	],
-	"exec": "ts-node --inspect=5858 -r dotenv/config ./src/index.ts"
+	"exec": "node --inspect=5858 -r ts-node/register -r dotenv/config ./src/index.ts"
 }
