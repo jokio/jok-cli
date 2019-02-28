@@ -7,7 +7,7 @@
 	"types": "dist/index.d.js",
 	"scripts": {
 		"start": "ts-node src",
-		"test": "ts-node ./node_modules/jokio/src/_test",
+		"test": "node ./node_modules/jokio/dist/_test.js",
 		"dev": "nodemon",
 		"build": "tsc"
 	},
