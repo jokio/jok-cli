@@ -7,7 +7,7 @@
 	"types": "dist/index.d.js",
 	"scripts": {
 		"start": "next start src",
-		"test": "node ./node_modules/jokio/dist/_test.js",
+		"test": "jest",
 		"dev": "nodemon",
 		"build": "next build src"
 	},
@@ -17,7 +17,6 @@
 		"express": "4.16.4",
 		"graphql": "14.0.2",
 		"graphql-voyager": "1.0.0-rc.26",
-		"jokio": "0.4.2",
 		"next": "7.0.2",
 		"react": "16.7.0",
 		"react-dom": "16.7.0"

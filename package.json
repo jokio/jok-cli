@@ -8,7 +8,7 @@
 	"bin": "./dist/program.js",
 	"scripts": {
 		"start": "node dist",
-		"test": "ts-node ./node_modules/jokio/src/_test",
+		"test": "jest",
 		"dev": "nodemon",
 		"build": "tsc",
 		"cleanup": "rm -fr dist/",
@@ -26,7 +26,6 @@
 		"execa": "1.0.0",
 		"fs-extra": "7.0.1",
 		"graphql": "14.0.2",
-		"jokio": "0.3.0",
 		"mkdirp": "^0.5.1",
 		"ms": "2.1.1",
 		"node-fetch": "^2.3.0",

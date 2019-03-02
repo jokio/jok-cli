@@ -11,12 +11,12 @@ export function help() {
     Only ${chalk.green('<project-directory>')} is required.
 
     If you have any problems, do not hesitate to file an issue:
-      ${chalk.cyan('https://github.com/jokio/create-jokio-app/issues/new')}
+      ${chalk.cyan('https://github.com/jokio/jok-cli/issues/new')}
   `
 }
 
 export function exampleHelp() {
-	return `Example from https://github.com/jokio/jokio/tree/master/examples/ ${output.param('example-path')}`
+	return `Example from https://github.com/jokio/jok-cli/tree/master/examples/ ${output.param('example-path')}`
 }
 
 export function missingProjectName() {
@@ -36,7 +36,8 @@ Run ${chalk.cyan(`${program.name} --help`)} to see all options.
 
 export function alreadyExists(projectName) {
 	return `
-Uh oh! Looks like there's already a directory called ${chalk.red(projectName)}. Please try a different name or delete that folder.`
+Uh oh! Looks like there's already a`
+		+ ` directory called ${chalk.red(projectName)}. Please try a different name or delete that folder.`
 }
 
 export function installing(packages) {

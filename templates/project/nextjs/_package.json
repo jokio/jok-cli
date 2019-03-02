@@ -7,14 +7,13 @@
 	"types": "dist/index.d.js",
 	"scripts": {
 		"start": "next start src",
-		"test": "node ./node_modules/jokio/dist/_test.js",
+		"test": "jest",
 		"dev": "nodemon",
 		"build": "next build src"
 	},
 	"dependencies": {
 		"@zeit/next-typescript": "1.1.1",
 		"express": "4.16.4",
-		"jokio": "0.4.2",
 		"next": "7.0.2",
 		"react": "16.7.0",
 		"react-dom": "16.7.0"

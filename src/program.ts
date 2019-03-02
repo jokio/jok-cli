@@ -63,7 +63,7 @@ program
 		console.log(`  ` +
 			`${chalk.gray('$')} jok graphql-client ` +
 			`-e ${chalk.green('https://server.jok.io')} ` +
-			`-o ${chalk.green('src/generated/jokio.ts')}`)
+			`-o ${chalk.green('src/generated/graph.ts')}`)
 		console.log()
 	})
 

@@ -14,4 +14,4 @@ pipelines:
     #     name: Deploy to Development
     #     deployment: test
     #     script:
-    #       - ssh root@server.jok.io 'git archive --remote=ssh://git@bitbucket.org/jokio/jokio-docker.git master deploy.sh | sh'
+    #       - ssh root@server 'git archive --remote=ssh://git@bitbucket.org/ORG/REPO.git master deploy.sh | sh'
