@@ -22,16 +22,16 @@
 		"templates"
 	],
 	"dependencies": {
-		"ansi-escapes": "3.1.0",
-		"chalk": "2.4.1",
+		"ansi-escapes": "3.2.0",
+		"chalk": "2.4.2",
 		"commander": "2.19.0",
 		"execa": "1.0.0",
 		"fs-extra": "7.0.1",
-		"graphql": "14.0.2",
+		"graphql": "14.1.1",
 		"mkdirp": "^0.5.1",
 		"ms": "2.1.1",
 		"node-fetch": "^2.3.0",
-		"ora": "3.0.0"
+		"ora": "3.2.0"
 	},
 	"devDependencies": {
 		"@types/chalk": "2.2.0",
@@ -39,19 +39,19 @@
 		"@types/execa": "^0.9.0",
 		"@types/fs-extra": "^5.0.4",
 		"@types/graphql": "^14.0.3",
-		"@types/jest": "23.3.9",
+		"@types/jest": "24.0.9",
 		"@types/mkdirp": "^0.5.2",
 		"@types/ms": "^0.7.30",
 		"@types/node-fetch": "^2.1.2",
-		"@types/ora": "^1.3.4",
-		"dotenv": "6.0.0",
-		"jest": "23.6.0",
-		"nodemon": "1.14.11",
-		"standard-changelog": "2.0.6",
-		"ts-jest": "23.10.4",
-		"ts-node": "4.0.1",
-		"tslint": "5.11.0",
-		"typescript": "3.0.1"
+		"@types/ora": "^3.1.0",
+		"dotenv": "6.2.0",
+		"jest": "24.1.0",
+		"nodemon": "1.18.10",
+		"standard-changelog": "2.0.7",
+		"ts-jest": "24.0.0",
+		"ts-node": "8.0.2",
+		"tslint": "5.13.1",
+		"typescript": "3.3.3333"
 	},
 	"repository": {
 		"type": "git",
