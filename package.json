@@ -8,12 +8,14 @@
 	"bin": "./dist/program.js",
 	"scripts": {
 		"start": "node dist",
-		"test": "jest",
 		"dev": "nodemon",
 		"build": "tsc",
+		"lint": "tslint --project .",
+		"test": "jest",
+		"test-ci": "jest --coverage",
 		"cleanup": "rm -fr dist/",
-		"prepublishOnly": "yarn build",
-		"postpack": "yarn cleanup"
+		"prepublishOnly": "npm run build",
+		"postpack": "npm run cleanup"
 	},
 	"files": [
 		"dist",
