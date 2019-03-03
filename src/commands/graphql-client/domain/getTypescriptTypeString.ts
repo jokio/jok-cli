@@ -12,9 +12,6 @@ export default function getTypescriptTypeString({
 		case 'UNION':
 			return type.name
 
-		case 'SCALAR':
-			return type.name
-
 		case 'NON_NULL':
 			return getTypescriptTypeString({ type: type.ofType })
 

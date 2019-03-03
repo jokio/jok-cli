@@ -5,7 +5,10 @@ import {
 	IntrospectionTypeRef,
 } from 'graphql'
 
-export default function generateResultTypeFields(type: IntrospectionTypeRef, allTypes: IntrospectionType[]): string[] | null {
+export default function generateResultTypeFields(
+	type: IntrospectionTypeRef,
+	allTypes: IntrospectionType[],
+): string[] | null {
 
 	switch (type.kind) {
 		case 'ENUM':
