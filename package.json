@@ -44,7 +44,7 @@
 		"@types/ms": "^0.7.30",
 		"@types/node-fetch": "^2.1.2",
 		"@types/ora": "^3.1.0",
-		"dotenv": "6.2.0",
+		"dotenv": "7.0.0",
 		"jest": "24.1.0",
 		"nodemon": "1.18.10",
 		"standard-changelog": "2.0.7",
