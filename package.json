@@ -39,7 +39,7 @@
 		"@types/execa": "^0.9.0",
 		"@types/fs-extra": "^5.0.4",
 		"@types/graphql": "^14.0.3",
-		"@types/jest": "24.0.9",
+		"@types/jest": "24.0.10",
 		"@types/mkdirp": "^0.5.2",
 		"@types/ms": "^0.7.30",
 		"@types/node-fetch": "^2.1.2",
