@@ -27,7 +27,7 @@
 		"commander": "2.19.0",
 		"execa": "1.0.0",
 		"fs-extra": "7.0.1",
-		"graphql": "14.1.1",
+		"graphql": "14.2.0",
 		"mkdirp": "^0.5.1",
 		"ms": "2.1.1",
 		"node-fetch": "^2.3.0",
