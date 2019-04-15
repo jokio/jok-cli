@@ -49,7 +49,7 @@
 		"nodemon": "1.18.10",
 		"standard-changelog": "2.0.7",
 		"ts-jest": "24.0.0",
-		"ts-node": "8.0.3",
+		"ts-node": "8.1.0",
 		"tslint": "5.13.1",
 		"typescript": "3.3.3333"
 	},
