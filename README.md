@@ -2,7 +2,7 @@
 # Jok CLI 
 [![platform: jokio](https://img.shields.io/badge/platform-%F0%9F%83%8F%20jok-44cc11.svg)](https://github.com/jokio/jok-cli)
 [![npm version](https://badge.fury.io/js/jok.svg)](https://badge.fury.io/js/jok)
-[![codecov](https://codecov.io/gh/jokio/jok-cli/branch/master/graph/badge.svg)](https://codecov.io/gh/jokio/jok-cli) [![Greenkeeper badge](https://badges.greenkeeper.io/jokio/jok-cli.svg)](https://greenkeeper.io/)
+[![codecov](https://codecov.io/gh/jokio/jok-cli/branch/master/graph/badge.svg)](https://codecov.io/gh/jokio/jok-cli)
 
 Bundle of utility functions for code generation, related to nodejs and graphql
 
