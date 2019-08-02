@@ -6,7 +6,8 @@
 
 `jok` is a namespace which bundles utility functions for code generation, related to nodejs and graphql
 
-## API
+
+## functions
 
 ### `init`
 The easiest way to create new project on nodejs
