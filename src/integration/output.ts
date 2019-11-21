@@ -1,6 +1,6 @@
-import { eraseLine } from 'ansi-escapes'
+import ansiEscapes from 'ansi-escapes'
 import chalk from 'chalk'
-import * as ora from 'ora'
+import ora from 'ora'
 const ms = require('ms')
 
 export function info(msg) {
@@ -32,7 +32,7 @@ export function wait(msg) {
 
 	return function () {
 		spinner.stop()
-		process.stdout.write(eraseLine)
+		process.stdout.write(ansiEscapes.eraseLine)
 	}
 }
 
