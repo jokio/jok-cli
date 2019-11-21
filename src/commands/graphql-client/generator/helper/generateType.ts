@@ -84,7 +84,7 @@ function scalarType(type: IntrospectionScalarType) {
 
 	switch (typeName) {
 		case 'ID':
-			tsType = 'any'
+			tsType = 'string'
 			break
 
 		case 'String':
@@ -119,6 +119,11 @@ function scalarType(type: IntrospectionScalarType) {
 		default:
 			tsType = 'any'
 			break
+	}
+
+	// export ID for later use in the application
+	if (typeName === 'ID') {
+		return `export type ${typeName} = ${tsType}`
 	}
 
 	return `type ${typeName} = ${tsType}`
