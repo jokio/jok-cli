@@ -3,10 +3,11 @@ export default function ({
 	queryName,
 	variablesDeclarationString,
 	variablesString,
+	returnQuery = false,
 }) {
 	if (!hasFragment) {
 		return `	// build query
-		const query = gql2\`
+		${returnQuery ? 'return' : 'const query ='} gql2\`
 		query ${queryName}${variablesDeclarationString} {
 			${queryName}${variablesString}
 		}
@@ -15,7 +16,7 @@ export default function ({
 
 	return `
 		// build query
-		const query = gql2\`
+		${returnQuery ? 'return' : 'const query ='} gql2\`
 		query ${queryName}${variablesDeclarationString} {
 			${queryName}${variablesString} {
 				...\${fragmentName}

@@ -14,7 +14,12 @@ import renderMethod from '../render/renderMethod'
 import renderOptions from '../render/renderOptions'
 import renderQuery from '../render/renderQuery'
 
-export default function (field: IntrospectionField, types: IntrospectionType[], generateDefaultFragments: boolean) {
+export default function (
+	field: IntrospectionField,
+	types: IntrospectionType[],
+	generateDefaultFragments: boolean,
+	generateOnlyQuery = false,
+) {
 
 	const queryName = field.name
 	const propsType = getTypescriptPropsTypeName('Query', queryName)
@@ -45,32 +50,59 @@ export default function (field: IntrospectionField, types: IntrospectionType[], 
 
 	const type = <IntrospectionType> types.find(x => x.name === returnGraphqlTypeName)
 
-	const method = renderMethod({
-		rootType: RootType.Query,
-		methodName,
-		generateDefaultFragments,
-		hasProps: hasInputs,
-		propsType,
-		hasResultType,
-		renderContent: () =>
-			// Render Query
-			renderOptions(fragmentName, hasResultType) +
-			(hasResultType
-				? renderFragment(type, generateDefaultFragments, returnGraphqlTypeName)
-				: '') +
-			renderQuery({
-				hasFragment: hasResultType,
-				queryName,
-				variablesDeclarationString,
-				variablesString,
-			}) +
-			renderApolloCall({
-				rootType: RootType.Query,
-				hasVariables: hasInputs,
-				queryName,
-				returnType: returnClassFullname,
-			}),
-	})
+	let method: string
+
+	if (!generateOnlyQuery) {
+		method = renderMethod({
+			rootType: RootType.Query,
+			methodName,
+			generateDefaultFragments,
+			hasProps: hasInputs,
+			propsType,
+			hasResultType,
+			renderContent: () =>
+				// Render Query
+				renderOptions(fragmentName, hasResultType) +
+				(hasResultType
+					? renderFragment(type, generateDefaultFragments, returnGraphqlTypeName)
+					: '') +
+				renderQuery({
+					hasFragment: hasResultType,
+					queryName,
+					variablesDeclarationString,
+					variablesString,
+				}) +
+				renderApolloCall({
+					rootType: RootType.Query,
+					hasVariables: hasInputs,
+					queryName,
+					returnType: returnClassFullname,
+				}),
+		})
+	}
+	else {
+		method = renderMethod({
+			rootType: RootType.Query,
+			methodName: methodName + 'Query',
+			generateDefaultFragments,
+			hasProps: hasInputs,
+			propsType,
+			hasResultType,
+			renderContent: () =>
+				// Render Query
+				renderOptions(fragmentName, hasResultType) +
+				(hasResultType
+					? renderFragment(type, generateDefaultFragments, returnGraphqlTypeName)
+					: '') +
+				renderQuery({
+					hasFragment: hasResultType,
+					queryName,
+					variablesDeclarationString,
+					variablesString,
+					returnQuery: true,
+				}),
+		})
+	}
 
 	return {
 		method,

@@ -40,11 +40,19 @@ export default (
 	const methods = methodsAndProps
 		.map(x => x.method)
 
+	let methodQueriesString = ''
+
+	if (typeName === RootType.Query.toString()) {
+		methodQueriesString = queryType.fields
+			.map(x => generateMethod(x, otherTypes, generateDefaultFragments, true).method)
+			.join('\n')
+	}
+
 	const className = capitalizeFirstLetter(typeName)
 
 	return renderRootTypeClass({
 		className,
 		renderPropTypes: () => methodProps.join('\n'),
-		renderMethods: () => methods.join('\n'),
+		renderMethods: () => methods.join('\n') + methodQueriesString,
 	})
 }
