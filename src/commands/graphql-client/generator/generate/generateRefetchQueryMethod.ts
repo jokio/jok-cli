@@ -3,12 +3,11 @@ import buildVariablesDeclarationString from '../../domain/buildVariablesDeclarat
 import buildVariablesPassString from '../../domain/buildVariablesPassString'
 import getGraphqlTypeString from '../../domain/getGraphqlTypeString'
 import getTypescriptPropsTypeName from '../../domain/getTypescriptPropsTypeName'
-import getTypescriptTypeString from '../../domain/getTypescriptTypeString'
+// import getTypescriptTypeString from '../../domain/getTypescriptTypeString'
 import { RootType } from '../../utils/rootType'
 import uncapitalizeFirstLetter from '../../utils/uncapitalizeFirstLetter'
 import generatePropsType from '../helper/generatePropsType'
 import generateResultTypeFields from '../helper/generateResultTypeFields'
-import renderApolloCall from '../render/renderApolloCall'
 import renderFragment from '../render/renderFragment'
 import renderMethod from '../render/renderMethod'
 import renderOptions from '../render/renderOptions'
@@ -26,9 +25,9 @@ export default function (
 	const methodName = uncapitalizeFirstLetter(queryName)
 	const hasInputs = !!inputs.length
 
-	const returnClassFullname = getTypescriptTypeString({
-		type: field.type,
-	})
+	// const returnClassFullname = getTypescriptTypeString({
+	// 	type: field.type,
+	// })
 
 	const returnClassName = getGraphqlTypeString({
 		type: field.type,
@@ -51,7 +50,7 @@ export default function (
 
 	const method = renderMethod({
 		rootType: RootType.Query,
-		methodName,
+		methodName: methodName,
 		generateDefaultFragments,
 		hasProps: hasInputs,
 		propsType,
@@ -67,12 +66,7 @@ export default function (
 				queryName,
 				variablesDeclarationString,
 				variablesString,
-			}) +
-			renderApolloCall({
-				rootType: RootType.Query,
-				hasVariables: hasInputs,
-				queryName,
-				returnType: returnClassFullname,
+				returnQuery: true,
 			}),
 	})
 

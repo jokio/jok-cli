@@ -34,6 +34,7 @@ export default function (
 	// start generation
 	const generatedQuery = generateRootType(RootType.Query, otherTypes, generateDefaultFragments)(queryType)
 	const generatedWatchQuery = generateRootType('watchQuery', otherTypes, generateDefaultFragments)(queryType)
+	const generatedRefetchQuery = generateRootType('refetchQuery', otherTypes, generateDefaultFragments)(queryType)
 	const generatedMutation = generateRootType(RootType.Mutation, otherTypes, generateDefaultFragments)(mutationType)
 	const generatedSubscription =
 		generateRootType(RootType.Subscription, otherTypes, generateDefaultFragments)(subscriptionType)
@@ -47,6 +48,7 @@ export default function (
 	return renderProxy({
 		generatedQuery,
 		generatedWatchQuery,
+		generatedRefetchQuery,
 		generatedMutation,
 		generatedSubscription,
 		generatedOtherTypes,

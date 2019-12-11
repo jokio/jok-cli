@@ -4,6 +4,7 @@ export default function ({
 	generatedOtherTypes,
 	generatedQuery,
 	generatedWatchQuery,
+	generatedRefetchQuery,
 	generatedMutation,
 	generatedSubscription,
 }) {
@@ -16,6 +17,7 @@ ${generatedOtherTypes}
 
 ${generatedQuery || ''}
 ${generatedWatchQuery || ''}
+${generatedRefetchQuery || ''}
 ${generatedMutation || ''}
 ${generatedSubscription || ''}
 
@@ -50,6 +52,7 @@ interface DefaultOptions {
 export interface Client {
 	${generatedQuery ? 'query: Query' : ''}
 	${generatedWatchQuery ? 'watchQuery: WatchQuery' : ''}
+	${generatedRefetchQuery ? 'refetchQuery: RefetchQuery' : ''}
 	${generatedMutation ? 'mutation: Mutation' : ''}
 	${generatedSubscription ? 'subscription: Subscription' : ''}
 }
@@ -64,6 +67,11 @@ export default function (client: ApolloClient<any>, defaultOptions: DefaultOptio
 		${
 		generatedWatchQuery
 			? 'watchQuery: new WatchQuery(client, defaultOptions.query || {}),'
+			: ''
+		}
+		${
+		generatedRefetchQuery
+			? 'refetchQuery: new RefetchQuery(client, defaultOptions.query || {}),'
 			: ''
 		}
 		${

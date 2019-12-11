@@ -3,12 +3,13 @@ import capitalizeFirstLetter from '../utils/capitalizeFirstLetter'
 import { RootType } from '../utils/rootType'
 import generateMutationMethod from './generate/generateMutationMethod'
 import generateQueryMethod from './generate/generateQueryMethod'
+import generateRefetchQueryMethod from './generate/generateRefetchQueryMethod'
 import generateSubscriptionMethod from './generate/generateSubscriptionMethod'
 import generateWatchQueryMethod from './generate/generateWatchQueryMethod'
 import renderRootTypeClass from './render/renderRootTypeClass'
 
 export default (
-	typeName: RootType | 'watchQuery',
+	typeName: RootType | 'watchQuery' | 'refetchQuery',
 	otherTypes: IntrospectionType[],
 	generateDefaultFragments: boolean,
 ) => (queryType: IntrospectionType) => {
@@ -24,6 +25,7 @@ export default (
 	const generateOptions = {
 		[RootType.Query.toString()]: generateQueryMethod,
 		['watchQuery']: generateWatchQueryMethod,
+		['refetchQuery']: generateRefetchQueryMethod,
 		[RootType.Mutation.toString()]: generateMutationMethod,
 		[RootType.Subscription.toString()]: generateSubscriptionMethod,
 	}
@@ -40,19 +42,11 @@ export default (
 	const methods = methodsAndProps
 		.map(x => x.method)
 
-	let methodQueriesString = ''
-
-	if (typeName === RootType.Query.toString()) {
-		methodQueriesString = queryType.fields
-			.map(x => generateMethod(x, otherTypes, generateDefaultFragments, true).method)
-			.join('\n')
-	}
-
 	const className = capitalizeFirstLetter(typeName)
 
 	return renderRootTypeClass({
 		className,
 		renderPropTypes: () => methodProps.join('\n'),
-		renderMethods: () => methods.join('\n') + methodQueriesString,
+		renderMethods: () => methods.join('\n'),
 	})
 }
