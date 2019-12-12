@@ -12,6 +12,7 @@ import renderFragment from '../render/renderFragment'
 import renderMethod from '../render/renderMethod'
 import renderOptions from '../render/renderOptions'
 import renderQuery from '../render/renderQuery'
+import renderRefetchQueryResult from '../render/renderRefetchQueryResult'
 
 export default function (
 	field: IntrospectionField,
@@ -66,7 +67,9 @@ export default function (
 				queryName,
 				variablesDeclarationString,
 				variablesString,
-				returnQuery: true,
+			}) +
+			renderRefetchQueryResult({
+				hasProps: hasInputs,
 			}),
 	})
 
