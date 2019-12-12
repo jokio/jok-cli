@@ -1,7 +1,7 @@
 export default function (fragmentName, hasResultType) {
 	const fragmentNameSection = hasResultType
 		? `
-		const fragmentName = mergedOptions.fragmentName || '${fragmentName}'`
+		const fragmentName = mergedOptions.fragmentName || getFirstFragmentName(fragment) || '${fragmentName}'`
 		: ''
 
 	return `

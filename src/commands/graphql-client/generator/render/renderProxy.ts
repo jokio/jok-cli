@@ -105,5 +105,18 @@ function getResultData<T>(result, dataFieldName) {
 	// cast the result and return (need any for scalar types, to avoid compilation error)
 	return <T><any>result.data[dataFieldName]
 }
+
+function getFirstFragmentName(fragment: string | Object) {
+
+	if (typeof fragment !== 'object') { return }
+	if (
+		!fragment['definitions'] ||
+		!fragment['definitions'][0] ||
+		!fragment['definitions'][0].name ||
+		!fragment['definitions'][0].name.value
+	) { return }
+
+	return fragment['definitions'][0].name.value
+}
 `
 }
