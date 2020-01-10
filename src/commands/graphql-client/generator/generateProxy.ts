@@ -3,6 +3,7 @@ import { RootType } from '../utils/rootType'
 import generateRootType from './generateRootType'
 import generateType from './helper/generateType'
 import renderProxy from './render/renderProxy'
+import renderQueryTypesEnum from './render/renderQueryTypesEnum'
 
 export default function (
 	introspectionSchema: IntrospectionSchema,
@@ -21,15 +22,17 @@ export default function (
 		? introspectionSchema.subscriptionType.name
 		: null
 
-	const queryType = <IntrospectionType> types.find(x => x.name === queryTypeName)
-	const mutationType = <IntrospectionType> types.find(x => x.name === mutationTypeName)
-	const subscriptionType = <IntrospectionType> types.find(x => x.name === subscriptionTypeName)
+	const queryType = <IntrospectionType>types.find(x => x.name === queryTypeName)
+	const mutationType = <IntrospectionType>types.find(x => x.name === mutationTypeName)
+	const subscriptionType = <IntrospectionType>types.find(x => x.name === subscriptionTypeName)
 
 	const otherTypes = types.filter(x =>
 		(x !== queryType) &&
 		(x !== mutationType) &&
 		(x !== subscriptionType),
 	)
+
+	const objectTypes = otherTypes.filter(x => x.kind === 'OBJECT')
 
 	// start generation
 	const generatedQuery = generateRootType(RootType.Query, otherTypes, generateDefaultFragments)(queryType)
@@ -45,6 +48,8 @@ export default function (
 		.filter(x => !!x)
 		.join('\n')
 
+	const generatedQueryTypesEnum = renderQueryTypesEnum(objectTypes)
+
 	return renderProxy({
 		generatedQuery,
 		generatedWatchQuery,
@@ -52,6 +57,7 @@ export default function (
 		generatedMutation,
 		generatedSubscription,
 		generatedOtherTypes,
+		generatedQueryTypesEnum,
 	})
 }
 

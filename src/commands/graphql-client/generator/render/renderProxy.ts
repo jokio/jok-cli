@@ -7,10 +7,14 @@ export default function ({
 	generatedRefetchQuery,
 	generatedMutation,
 	generatedSubscription,
+	generatedQueryTypesEnum,
 }) {
 	return `${renderImports()}
 
 // tslint:disable
+
+// types enum
+${generatedQueryTypesEnum || ''}
 
 // types
 ${generatedOtherTypes}
