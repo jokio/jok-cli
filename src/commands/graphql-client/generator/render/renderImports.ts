@@ -1,4 +1,4 @@
-export default function() {
+export default function () {
 	return `
 import ApolloClient, {
 	ErrorPolicy,
@@ -18,5 +18,5 @@ import gql2 from 'graphql-tag'
 import { from, observable } from 'rxjs'
 import { map } from 'rxjs/operators'
 
-`;
+`
 }
