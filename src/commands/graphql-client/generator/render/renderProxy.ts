@@ -5,6 +5,7 @@ export default function ({
 	generatedQuery,
 	generatedWatchQuery,
 	generatedRefetchQuery,
+	generatedUpdateCache,
 	generatedMutation,
 	generatedSubscription,
 	generatedQueryTypesEnum,
@@ -22,18 +23,31 @@ ${generatedOtherTypes}
 ${generatedQuery || ''}
 ${generatedWatchQuery || ''}
 ${generatedRefetchQuery || ''}
+${generatedUpdateCache || ''}
 ${generatedMutation || ''}
 ${generatedSubscription || ''}
 
 // helper types
 type Omit<T, K extends keyof T> = Pick<T, Exclude<keyof T, K>>
-${generatedQuery ? `
+${
+		generatedQuery
+			? `
 type OmittedQueryOptions = Omit<Partial<QueryOptions<OperationVariables>>, 'query' | 'variables'>
-type OmittedWatchQueryOptions = Omit<Partial<WatchQueryOptions<OperationVariables>>, 'variables' | 'query'>` : ''}
-${generatedMutation ? `
-type OmittedMutationOptions = Omit<Partial<MutationOptions<OperationVariables>>, 'mutation' | 'variables'>` : ''}
-${generatedSubscription ? `
-type OmittedSubscriptionOptions = Omit<Partial<SubscriptionOptions<OperationVariables>>, 'query' | 'variables'>` : ''}
+type OmittedWatchQueryOptions = Omit<Partial<WatchQueryOptions<OperationVariables>>, 'variables' | 'query'>`
+			: ''
+		}
+${
+		generatedMutation
+			? `
+type OmittedMutationOptions = Omit<Partial<MutationOptions<OperationVariables>>, 'mutation' | 'variables'>`
+			: ''
+		}
+${
+		generatedSubscription
+			? `
+type OmittedSubscriptionOptions = Omit<Partial<SubscriptionOptions<OperationVariables>>, 'query' | 'variables'>`
+			: ''
+		}
 
 
 
@@ -50,24 +64,25 @@ interface DefaultOptions {
 	${generatedQuery ? 'query?: GraphqlCallOptions' : ''}
 	${generatedWatchQuery ? 'watchQuery?: GraphqlCallOptions' : ''}
 	${generatedMutation ? `mutation?: Omit<GraphqlCallOptions, 'fetchPolicy'>` : ''}
-	${generatedSubscription ? `subscription?: Omit<GraphqlCallOptions, 'errorPolicy'>` : ''}
+	${
+		generatedSubscription
+			? `subscription?: Omit<GraphqlCallOptions, 'errorPolicy'>`
+			: ''
+		}
 }
 
 export interface Client {
 	${generatedQuery ? 'query: Query' : ''}
 	${generatedWatchQuery ? 'watchQuery: WatchQuery' : ''}
 	${generatedRefetchQuery ? 'refetchQuery: RefetchQuery' : ''}
+	${generatedUpdateCache ? 'updateCacheQuery: UpdateCacheQuery' : ''}
 	${generatedMutation ? 'mutation: Mutation' : ''}
 	${generatedSubscription ? 'subscription: Subscription' : ''}
 }
 
 export default function (client: ApolloClient<any>, defaultOptions: DefaultOptions = {}): Client {
 	return {
-		${
-		generatedQuery
-			? 'query: new Query(client, defaultOptions.query || {}),'
-			: ''
-		}
+		${generatedQuery ? 'query: new Query(client, defaultOptions.query || {}),' : ''}
 		${
 		generatedWatchQuery
 			? 'watchQuery: new WatchQuery(client, defaultOptions.query || {}),'
@@ -76,6 +91,11 @@ export default function (client: ApolloClient<any>, defaultOptions: DefaultOptio
 		${
 		generatedRefetchQuery
 			? 'refetchQuery: new RefetchQuery(client, defaultOptions.query || {}),'
+			: ''
+		}
+		${
+		generatedUpdateCache
+			? 'updateCacheQuery: new UpdateCacheQuery(client, defaultOptions.query || {}),'
 			: ''
 		}
 		${

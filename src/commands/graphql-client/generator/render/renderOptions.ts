@@ -1,4 +1,4 @@
-export default function (fragmentName, hasResultType) {
+export default function (fragmentName, hasResultType, skipMergingOptions = false) {
 	const fragmentNameSection = hasResultType
 		? `
 		const fragmentName = mergedOptions.fragmentName || getFirstFragmentName(fragment) || '${fragmentName}'`
@@ -7,7 +7,7 @@ export default function (fragmentName, hasResultType) {
 	return `
 		const mergedOptions = {
 			...<any>this.defaultOptions,
-			...options,
+			${skipMergingOptions ? '' : '...options,'}
 		}
 
 		${fragmentNameSection}

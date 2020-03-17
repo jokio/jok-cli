@@ -5,11 +5,12 @@ import generateMutationMethod from './generate/generateMutationMethod'
 import generateQueryMethod from './generate/generateQueryMethod'
 import generateRefetchQueryMethod from './generate/generateRefetchQueryMethod'
 import generateSubscriptionMethod from './generate/generateSubscriptionMethod'
+import generateUpdateCacheQueryMethod from './generate/generateUpdateCacheQueryMethod'
 import generateWatchQueryMethod from './generate/generateWatchQueryMethod'
 import renderRootTypeClass from './render/renderRootTypeClass'
 
 export default (
-	typeName: RootType | 'watchQuery' | 'refetchQuery',
+	typeName: RootType | 'watchQuery' | 'refetchQuery' | 'updateCacheQuery',
 	otherTypes: IntrospectionType[],
 	generateDefaultFragments: boolean,
 ) => (queryType: IntrospectionType) => {
@@ -26,6 +27,7 @@ export default (
 		[RootType.Query.toString()]: generateQueryMethod,
 		['watchQuery']: generateWatchQueryMethod,
 		['refetchQuery']: generateRefetchQueryMethod,
+		['updateCacheQuery']: generateUpdateCacheQueryMethod,
 		[RootType.Mutation.toString()]: generateMutationMethod,
 		[RootType.Subscription.toString()]: generateSubscriptionMethod,
 	}
