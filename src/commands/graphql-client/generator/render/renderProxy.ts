@@ -5,7 +5,7 @@ export default function ({
 	generatedQuery,
 	generatedWatchQuery,
 	generatedRefetchQuery,
-	generatedUpdateCache,
+	generatedCacheWriteQuery,
 	generatedMutation,
 	generatedSubscription,
 	generatedQueryTypesEnum,
@@ -23,7 +23,7 @@ ${generatedOtherTypes}
 ${generatedQuery || ''}
 ${generatedWatchQuery || ''}
 ${generatedRefetchQuery || ''}
-${generatedUpdateCache || ''}
+${generatedCacheWriteQuery || ''}
 ${generatedMutation || ''}
 ${generatedSubscription || ''}
 
@@ -75,7 +75,7 @@ export interface Client {
 	${generatedQuery ? 'query: Query' : ''}
 	${generatedWatchQuery ? 'watchQuery: WatchQuery' : ''}
 	${generatedRefetchQuery ? 'refetchQuery: RefetchQuery' : ''}
-	${generatedUpdateCache ? 'updateCacheQuery: UpdateCacheQuery' : ''}
+	${generatedCacheWriteQuery ? 'cacheWriteQuery: cacheWriteQuery' : ''}
 	${generatedMutation ? 'mutation: Mutation' : ''}
 	${generatedSubscription ? 'subscription: Subscription' : ''}
 }
@@ -94,8 +94,8 @@ export default function (client: ApolloClient<any>, defaultOptions: DefaultOptio
 			: ''
 		}
 		${
-		generatedUpdateCache
-			? 'updateCacheQuery: new UpdateCacheQuery(client, defaultOptions.query || {}),'
+		generatedCacheWriteQuery
+			? 'cacheWriteQuery: new cacheWriteQuery(client, defaultOptions.query || {}),'
 			: ''
 		}
 		${

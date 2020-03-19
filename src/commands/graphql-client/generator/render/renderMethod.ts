@@ -12,12 +12,12 @@ export default function ({
 	const omittedOptionsType = {
 		[RootType.Query]: 'OmittedQueryOptions',
 		watchQuery: 'OmittedWatchQueryOptions',
-		updateCacheQuery: 'OmittedQueryOptions',
+		cacheWriteQuery: 'OmittedQueryOptions',
 		[RootType.Mutation]: 'OmittedMutationOptions',
 		[RootType.Subscription]: 'OmittedSubscriptionOptions',
 	}[rootType]
 
-	const isUpdateCacheMode = rootType === 'updateCacheQuery'
+	const isCacheWriteQueryMode = rootType === 'cacheWriteQuery'
 
 	const fragmentRequiredSymbol = generateDefaultFragments ? '?' : ''
 
@@ -40,7 +40,7 @@ export default function ({
 	return `
 	${methodName}(
 		${hasProps ? `props: ${propsType},` : ``}
-		${isUpdateCacheMode
+		${isCacheWriteQueryMode
 			? `data: any,
 			${fragmentProp}`
 			: `

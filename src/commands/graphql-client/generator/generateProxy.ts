@@ -38,7 +38,7 @@ export default function (
 	const generatedQuery = generateRootType(RootType.Query, otherTypes, generateDefaultFragments)(queryType)
 	const generatedWatchQuery = generateRootType('watchQuery', otherTypes, generateDefaultFragments)(queryType)
 	const generatedRefetchQuery = generateRootType('refetchQuery', otherTypes, generateDefaultFragments)(queryType)
-	const generatedUpdateCache = generateRootType('updateCacheQuery', otherTypes, generateDefaultFragments)(queryType)
+	const generatedCacheWriteQuery = generateRootType('cacheWriteQuery', otherTypes, generateDefaultFragments)(queryType)
 	const generatedMutation = generateRootType(RootType.Mutation, otherTypes, generateDefaultFragments)(mutationType)
 	const generatedSubscription =
 		generateRootType(RootType.Subscription, otherTypes, generateDefaultFragments)(subscriptionType)
@@ -55,7 +55,7 @@ export default function (
 		generatedQuery,
 		generatedWatchQuery,
 		generatedRefetchQuery,
-		generatedUpdateCache,
+		generatedCacheWriteQuery,
 		generatedMutation,
 		generatedSubscription,
 		generatedOtherTypes,

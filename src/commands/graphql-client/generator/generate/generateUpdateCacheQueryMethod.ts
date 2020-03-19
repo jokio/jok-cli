@@ -6,11 +6,11 @@ import getTypescriptPropsTypeName from '../../domain/getTypescriptPropsTypeName'
 import uncapitalizeFirstLetter from '../../utils/uncapitalizeFirstLetter'
 import generatePropsType from '../helper/generatePropsType'
 import generateResultTypeFields from '../helper/generateResultTypeFields'
+import cacheWriteQuery from '../render/cacheWriteQuery'
 import renderFragment from '../render/renderFragment'
 import renderMethod from '../render/renderMethod'
 import renderOptions from '../render/renderOptions'
 import renderQuery from '../render/renderQuery'
-import updateCacheQuery from '../render/updateCacheQuery'
 
 export default function (
 	field: IntrospectionField,
@@ -44,7 +44,7 @@ export default function (
 	const type = <IntrospectionType>types.find(x => x.name === returnGraphqlTypeName)
 
 	const method = renderMethod({
-		rootType: 'updateCacheQuery',
+		rootType: 'cacheWriteQuery',
 		methodName: methodName,
 		generateDefaultFragments,
 		hasProps: hasInputs,
@@ -62,7 +62,7 @@ export default function (
 				variablesDeclarationString,
 				variablesString,
 			}) +
-			updateCacheQuery({
+			cacheWriteQuery({
 				hasProps: hasInputs,
 				queryName,
 			}),
