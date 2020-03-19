@@ -75,7 +75,7 @@ export interface Client {
 	${generatedQuery ? 'query: Query' : ''}
 	${generatedWatchQuery ? 'watchQuery: WatchQuery' : ''}
 	${generatedRefetchQuery ? 'refetchQuery: RefetchQuery' : ''}
-	${generatedCacheWriteQuery ? 'cacheWriteQuery: cacheWriteQuery' : ''}
+	${generatedCacheWriteQuery ? 'cacheWriteQuery: CacheWriteQuery' : ''}
 	${generatedMutation ? 'mutation: Mutation' : ''}
 	${generatedSubscription ? 'subscription: Subscription' : ''}
 }
@@ -95,7 +95,7 @@ export default function (client: ApolloClient<any>, defaultOptions: DefaultOptio
 		}
 		${
 		generatedCacheWriteQuery
-			? 'cacheWriteQuery: new cacheWriteQuery(client, defaultOptions.query || {}),'
+			? 'cacheWriteQuery: new CacheWriteQuery(client, defaultOptions.query || {}),'
 			: ''
 		}
 		${
