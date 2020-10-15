@@ -1,16 +1,17 @@
 import renderImports from './renderImports'
 
 export default function ({
-	generatedOtherTypes,
-	generatedQuery,
-	generatedWatchQuery,
-	generatedRefetchQuery,
-	generatedCacheWriteQuery,
-	generatedMutation,
-	generatedSubscription,
-	generatedQueryTypesEnum,
+  generatedOtherTypes,
+  generatedQuery,
+  generatedWatchQuery,
+  generatedRefetchQuery,
+  generatedCacheWriteQuery,
+  generatedMutation,
+  generatedSubscription,
+  generatedSubscriptionDocument,
+  generatedQueryTypesEnum,
 }) {
-	return `${renderImports()}
+  return `${renderImports()}
 
 // tslint:disable
 
@@ -26,29 +27,39 @@ ${generatedRefetchQuery || ''}
 ${generatedCacheWriteQuery || ''}
 ${generatedMutation || ''}
 ${generatedSubscription || ''}
+${generatedSubscriptionDocument || 'class SubscriptionDocument { }'}
 
 // helper types
 type Omit<T, K extends keyof T> = Pick<T, Exclude<keyof T, K>>
 ${
-		generatedQuery
-			? `
+  generatedQuery
+    ? `
 type OmittedQueryOptions = Omit<Partial<QueryOptions<OperationVariables>>, 'query' | 'variables'>
-type OmittedWatchQueryOptions = Omit<Partial<WatchQueryOptions<OperationVariables>>, 'variables' | 'query'>`
-			: ''
-		}
-${
-		generatedMutation
-			? `
-type OmittedMutationOptions = Omit<Partial<MutationOptions<OperationVariables>>, 'mutation' | 'variables'>`
-			: ''
-		}
-${
-		generatedSubscription
-			? `
-type OmittedSubscriptionOptions = Omit<Partial<SubscriptionOptions<OperationVariables>>, 'query' | 'variables'>`
-			: ''
-		}
+type OmittedWatchQueryOptions = Omit<Partial<WatchQueryOptions<OperationVariables>>, 'variables' | 'query'>
 
+type SubscribeToMoreOptions = {
+	subscribeToMore:
+	  {
+		graphqlDocument: { document: any, variables?: any } | ((subscription: SubscriptionDocument) => { document: any, variables?: any }),
+		updateQuery: UpdateQueryFn<User, any, any>
+	  }[]
+}
+
+`
+    : ''
+}
+${
+  generatedMutation
+    ? `
+type OmittedMutationOptions = Omit<Partial<MutationOptions<OperationVariables>>, 'mutation' | 'variables'>`
+    : ''
+}
+${
+  generatedSubscription
+    ? `
+type OmittedSubscriptionOptions = Omit<Partial<SubscriptionOptions<OperationVariables>>, 'query' | 'variables'>`
+    : ''
+}
 
 
 interface FragmentOptions {
@@ -63,12 +74,16 @@ interface GraphqlCallOptions {
 interface DefaultOptions {
 	${generatedQuery ? 'query?: GraphqlCallOptions' : ''}
 	${generatedWatchQuery ? 'watchQuery?: GraphqlCallOptions' : ''}
-	${generatedMutation ? `mutation?: Omit<GraphqlCallOptions, 'fetchPolicy'>` : ''}
 	${
-		generatedSubscription
-			? `subscription?: Omit<GraphqlCallOptions, 'errorPolicy'>`
-			: ''
-		}
+    generatedMutation
+      ? `mutation?: Omit<GraphqlCallOptions, 'fetchPolicy'>`
+      : ''
+  }
+	${
+    generatedSubscription
+      ? `subscription?: Omit<GraphqlCallOptions, 'errorPolicy'>`
+      : ''
+  }
 }
 
 export interface Client {
@@ -81,33 +96,46 @@ export interface Client {
 }
 
 export default function (client: ApolloClient<any>, defaultOptions: DefaultOptions = {}): Client {
+	${
+    generatedSubscriptionDocument
+      ? 'const subscriptionDocument = new SubscriptionDocument(client, defaultOptions.subscription || {})'
+      : ''
+  }
 	return {
-		${generatedQuery ? 'query: new Query(client, defaultOptions.query || {}),' : ''}
 		${
-		generatedWatchQuery
-			? 'watchQuery: new WatchQuery(client, defaultOptions.query || {}),'
-			: ''
-		}
+      generatedQuery
+        ? 'query: new Query(client, defaultOptions.query || {}),'
+        : ''
+    }
 		${
-		generatedRefetchQuery
-			? 'refetchQuery: new RefetchQuery(client, defaultOptions.query || {}),'
-			: ''
-		}
+      generatedWatchQuery
+        ? `watchQuery: new WatchQuery(client, defaultOptions.query || {}, ${
+            generatedSubscriptionDocument
+              ? 'subscriptionDocument'
+              : 'null'
+          }),`
+        : ''
+    }
 		${
-		generatedCacheWriteQuery
-			? 'cacheWriteQuery: new CacheWriteQuery(client, defaultOptions.query || {}),'
-			: ''
-		}
+      generatedRefetchQuery
+        ? 'refetchQuery: new RefetchQuery(client, defaultOptions.query || {}),'
+        : ''
+    }
 		${
-		generatedMutation
-			? 'mutation: new Mutation(client, defaultOptions.mutation || {}),'
-			: ''
-		}
+      generatedCacheWriteQuery
+        ? 'cacheWriteQuery: new CacheWriteQuery(client, defaultOptions.query || {}),'
+        : ''
+    }
 		${
-		generatedSubscription
-			? 'subscription: new Subscription(client, defaultOptions.subscription || {}),'
-			: ''
-		}
+      generatedMutation
+        ? 'mutation: new Mutation(client, defaultOptions.mutation || {}),'
+        : ''
+    }
+		${
+      generatedSubscription
+        ? 'subscription: new Subscription(client, defaultOptions.subscription || {}),'
+        : ''
+    }
 	}
 }
 

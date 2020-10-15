@@ -1,5 +1,5 @@
 export default function () {
-	return `
+  return `
 import ApolloClient, {
 	ErrorPolicy,
 	FetchPolicy,
@@ -13,6 +13,7 @@ import ApolloClient, {
 // gql2 - to ignore apollo extention validation
 // for now there is no better way
 import gql2 from 'graphql-tag'
+import { UpdateQueryFn } from 'apollo-client/core/watchQueryOptions'
 
 // rx library
 import { from, observable } from 'rxjs'

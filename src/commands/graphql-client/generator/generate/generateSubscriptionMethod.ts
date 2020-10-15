@@ -12,68 +12,89 @@ import renderApolloCall from '../render/renderApolloCall'
 import renderFragment from '../render/renderFragment'
 import renderMethod from '../render/renderMethod'
 import renderOptions from '../render/renderOptions'
+import renderReturnDocument from '../render/renderReturnDocument'
 import renderSubscription from '../render/renderSubscription'
 
-export default function (field: IntrospectionField, types: IntrospectionType[], generateDefaultFragments: boolean) {
+export default function (
+  field: IntrospectionField,
+  types: IntrospectionType[],
+  generateDefaultFragments: boolean,
+  onlyDocument: boolean,
+) {
+  const queryName = field.name
+  const propsType = getTypescriptPropsTypeName(
+    'Subscription',
+    queryName,
+  )
+  const inputs = field.args || []
+  const methodName = uncapitalizeFirstLetter(queryName)
+  const hasInputs = !!inputs.length
 
-	const queryName = field.name
-	const propsType = getTypescriptPropsTypeName('Subscription', queryName)
-	const inputs = field.args || []
-	const methodName = uncapitalizeFirstLetter(queryName)
-	const hasInputs = !!inputs.length
+  const returnClassFullname = getTypescriptTypeString({
+    type: field.type,
+  })
 
-	const returnClassFullname = getTypescriptTypeString({
-		type: field.type,
-	})
+  const returnClassName = getGraphqlTypeString({
+    type: field.type,
+    capitalizeName: true,
+    onlyName: true,
+  })
 
-	const returnClassName = getGraphqlTypeString({
-		type: field.type,
-		capitalizeName: true,
-		onlyName: true,
-	})
+  const returnGraphqlTypeName = returnClassName
+  const fragmentName = returnClassName + 'Data'
 
-	const returnGraphqlTypeName = returnClassName
-	const fragmentName = returnClassName + 'Data'
+  const props = generatePropsType(propsType, inputs)
 
-	const props = generatePropsType(propsType, inputs)
+  const resultTypeFields = generateResultTypeFields(field.type, types)
+  const hasResultType = !!resultTypeFields
 
-	const resultTypeFields = generateResultTypeFields(field.type, types)
-	const hasResultType = !!resultTypeFields
+  const variablesDeclarationString = buildVariablesDeclarationString(
+    inputs,
+  )
+  const variablesString = buildVariablesPassString(inputs)
 
-	const variablesDeclarationString = buildVariablesDeclarationString(inputs)
-	const variablesString = buildVariablesPassString(inputs)
+  const type = <IntrospectionType>(
+    types.find(x => x.name === returnGraphqlTypeName)
+  )
 
-	const type = <IntrospectionType> types.find(x => x.name === returnGraphqlTypeName)
+  const method = renderMethod({
+    rootType: RootType.Subscription,
+    methodName,
+    generateDefaultFragments,
+    hasProps: hasInputs,
+    propsType,
+    hasResultType,
+    renderContent: () =>
+      // Render Query
+      renderOptions(fragmentName, hasResultType) +
+      (hasResultType
+        ? renderFragment(
+            type,
+            generateDefaultFragments,
+            returnGraphqlTypeName,
+          )
+        : '') +
+      renderSubscription({
+        hasFragment: hasResultType,
+        queryName,
+        variablesDeclarationString,
+        variablesString,
+      }) +
+      (onlyDocument
+        ? renderReturnDocument({
+            rootType: RootType.Subscription,
+            hasVariables: hasInputs,
+          })
+        : renderApolloCall({
+            rootType: RootType.Subscription,
+            hasVariables: hasInputs,
+            queryName,
+            returnType: returnClassFullname,
+          })),
+  })
 
-	const method = renderMethod({
-		rootType: RootType.Subscription,
-		methodName,
-		generateDefaultFragments,
-		hasProps: hasInputs,
-		propsType,
-		hasResultType,
-		renderContent: () =>
-			// Render Query
-			renderOptions(fragmentName, hasResultType) +
-			(hasResultType
-				? renderFragment(type, generateDefaultFragments, returnGraphqlTypeName)
-				: '') +
-			renderSubscription({
-				hasFragment: hasResultType,
-				queryName,
-				variablesDeclarationString,
-				variablesString,
-			}) +
-			renderApolloCall({
-				rootType: RootType.Subscription,
-				hasVariables: hasInputs,
-				queryName,
-				returnType: returnClassFullname,
-			}),
-	})
-
-	return {
-		method,
-		props,
-	}
+  return {
+    method,
+    props,
+  }
 }
