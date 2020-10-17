@@ -10,7 +10,7 @@ export default function ({
 ${renderPropTypes()}
 
 // ${className} apis ------------------------------------
-class ${className}${onlyDocument ? 'Document' : ''} {
+export class ${className}${onlyDocument ? 'Document' : ''} {
 
 	constructor(private client: ApolloClient<any>, private defaultOptions: GraphqlCallOptions = {} ${
     isWatchQuery
