@@ -38,7 +38,7 @@ type OmittedQueryOptions = Omit<Partial<QueryOptions<OperationVariables>>, 'quer
 type OmittedWatchQueryOptions = Omit<Partial<WatchQueryOptions<OperationVariables>>, 'variables' | 'query'>
 
 type SubscribeToMoreOptions = {
-	subscribeToMore:
+	subscribeToMore?:
 	  {
 		graphqlDocument: { document: any, variables?: any } | ((subscription: SubscriptionDocument) => { document: any, variables?: any }),
 		updateQuery: UpdateQueryFn<User, any, any>
