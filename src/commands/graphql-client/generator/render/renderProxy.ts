@@ -144,7 +144,7 @@ function fixObservable(obs: any) {
 	return obs
 }
 
-function getResultData<T>(result, dataFieldName) {
+function getResultData<T>(result: any, dataFieldName: any) {
 	// if error, throw it
 	if (result.errors) {
 		throw new Error(<any>result.errors)
@@ -158,9 +158,11 @@ function getResultData<T>(result, dataFieldName) {
 	return <T><any>result.data[dataFieldName]
 }
 
-function getFirstFragmentName(fragment: string | Object) {
+function getFirstFragmentName(fragmentParam: string | Object) {
 
-	if (typeof fragment !== 'object') { return }
+  if (typeof fragmentParam !== 'object') { return }
+  const fragment = fragmentParam as any
+
 	if (
 		!fragment['definitions'] ||
 		!fragment['definitions'][0] ||

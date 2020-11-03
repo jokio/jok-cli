@@ -14,7 +14,7 @@ export class ${className}${onlyDocument ? 'Document' : ''} {
 
 	constructor(private client: ApolloClient<any>, private defaultOptions: GraphqlCallOptions = {} ${
     isWatchQuery
-      ? ', private subscriptionDocument: SubscriptionDocument = null'
+      ? ', private subscriptionDocument: SubscriptionDocument | null = null'
       : ''
   }) { }
 ${renderMethods()}

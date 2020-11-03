@@ -49,7 +49,7 @@ export default function ({
 
 		const { subscribeToMore = [] } = mergedOptions
 
-		subscribeToMore.forEach(x => {
+		subscribeToMore.forEach((x: any) => {
 		  zenObs.subscribeToMore({
 			...(typeof x.graphqlDocument === 'function'
 						? x.graphqlDocument(this.subscriptionDocument)
