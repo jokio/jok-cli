@@ -8,10 +8,11 @@ export default function ({
   propsType,
   renderContent,
   hasResultType,
+  returnClassFullname,
 }) {
   const omittedOptionsType = {
     [RootType.Query]: 'OmittedQueryOptions',
-    watchQuery: `OmittedWatchQueryOptions & SubscribeToMoreOptions`,
+    watchQuery: `OmittedWatchQueryOptions & SubscribeToMoreOptions<${returnClassFullname}>`,
     cacheWriteQuery: 'OmittedQueryOptions',
     [RootType.Mutation]: 'OmittedMutationOptions',
     [RootType.Subscription]: 'OmittedSubscriptionOptions',

@@ -64,6 +64,7 @@ export default function (
     hasProps: hasInputs,
     propsType,
     hasResultType,
+    returnClassFullname,
     renderContent: () =>
       // Render Query
       renderOptions(fragmentName, hasResultType) +
