@@ -12,7 +12,7 @@ export default function ({
 }) {
   const omittedOptionsType = {
     [RootType.Query]: 'OmittedQueryOptions',
-    watchQuery: `OmittedWatchQueryOptions & SubscribeToMoreOptions<${returnClassFullname}>`,
+    watchQuery: `OmittedWatchQueryOptions & SubscribeToMoreOptions<{ ${methodName} : ${returnClassFullname}}>`,
     cacheWriteQuery: 'OmittedQueryOptions',
     [RootType.Mutation]: 'OmittedMutationOptions',
     [RootType.Subscription]: 'OmittedSubscriptionOptions',
