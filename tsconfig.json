@@ -13,6 +13,7 @@
 		"noUnusedParameters": true,
 		"strict": true,
 		"outDir": "dist",
+		"skipLibCheck": true,
 		"lib": [
 			"esnext"
 		]
