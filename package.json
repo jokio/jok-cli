@@ -1,92 +1,93 @@
 {
-	"name": "jok",
-	"version": "0.0.0-semantic-release",
-	"author": "Jok Entertainers",
-	"description": "Bundle of utility functions for code generation related to nodejs and graphql",
-	"main": "dist/program.js",
-	"types": "dist/program.d.js",
-	"bin": "./dist/program.js",
-	"scripts": {
-		"start": "node dist",
-		"dev": "nodemon",
-		"build": "tsc",
-		"lint": "tslint --project .",
-		"lint:fix": "tslint --project . --fix",
-		"format": "prettier -c .",
+  "name": "jok",
+  "version": "0.0.0-semantic-release",
+  "author": "Jok Entertainers",
+  "description": "Bundle of utility functions for code generation related to nodejs and graphql",
+  "main": "dist/program.js",
+  "types": "dist/program.d.js",
+  "bin": "./dist/program.js",
+  "scripts": {
+    "start": "node dist",
+    "dev": "nodemon",
+    "build": "tsc",
+    "lint": "tslint --project .",
+    "lint:fix": "tslint --project . --fix",
+    "format": "prettier -c .",
     "format:fix": "prettier --write .",
-		"test": "jest",
-		"test-ci": "jest --coverage",
-		"cleanup": "rm -fr dist/",
-		"prepublishOnly": "npm run build",
-		"postpack": "npm run cleanup"
-	},
-	"files": [
-		"dist",
-		"templates"
-	],
-	"dependencies": {
-		"ansi-escapes": "4.0.0",
-		"chalk": "2.4.2",
-		"commander": "2.19.0",
-		"execa": "1.0.0",
-		"fs-extra": "7.0.1",
-		"graphql": "^15.4.0",
-		"mkdirp": "^0.5.1",
-		"ms": "2.1.1",
-		"node-fetch": "^2.3.0",
-		"ora": "3.2.0"
-	},
-	"devDependencies": {
-		"@types/chalk": "2.2.0",
-		"@types/commander": "2.12.2",
-		"@types/execa": "^0.9.0",
-		"@types/fs-extra": "^5.0.4",
-		"@types/graphql": "^14.5.0",
-		"@types/jest": "24.0.10",
-		"@types/mkdirp": "^0.5.2",
-		"@types/ms": "^0.7.30",
-		"@types/node-fetch": "^2.1.2",
-		"@types/ora": "^3.1.0",
-		"dotenv": "6.2.0",
-		"jest": "24.1.0",
-		"nodemon": "1.18.10",
-		"standard-changelog": "2.0.7",
-		"ts-jest": "24.0.0",
-		"ts-node": "8.0.3",
-		"tslint": "5.13.1",
-		"typescript": "3.3.3333"
-	},
-	"repository": {
-		"type": "git",
-		"url": "https://github.com/jokio/jok-cli"
-	},
-	"release": {
-		"branch": "master"
-	},
-	"resolutions": {
-		"**/event-stream": "^4.0.1"
-	},
-	"publishConfig": {
-		"access": "public"
-	},
-	"keywords": [
-		"jok",
-		"cli"
-	],
-	"license": "MIT",
-	"jest": {
-		"transform": {
-			"^.+\\.tsx?$": "ts-jest"
-		},
-		"testURL": "http://localhost",
-		"testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.(jsx?|tsx?)$",
-		"moduleFileExtensions": [
-			"ts",
-			"tsx",
-			"js",
-			"jsx",
-			"json",
-			"node"
-		]
-	}
+    "test": "jest",
+    "test-ci": "jest --coverage",
+    "cleanup": "rm -fr dist/",
+    "prepublishOnly": "npm run build",
+    "postpack": "npm run cleanup"
+  },
+  "files": [
+    "dist",
+    "templates"
+  ],
+  "dependencies": {
+    "ansi-escapes": "4.0.0",
+    "chalk": "2.4.2",
+    "commander": "2.19.0",
+    "execa": "1.0.0",
+    "fs-extra": "7.0.1",
+    "graphql": "^15.4.0",
+    "mkdirp": "^0.5.1",
+    "ms": "2.1.1",
+    "node-fetch": "^2.3.0",
+    "ora": "3.2.0"
+  },
+  "devDependencies": {
+    "@types/chalk": "2.2.0",
+    "@types/commander": "2.12.2",
+    "@types/execa": "^0.9.0",
+    "@types/fs-extra": "^5.0.4",
+    "@types/graphql": "^14.5.0",
+    "@types/jest": "24.0.10",
+    "@types/mkdirp": "^0.5.2",
+    "@types/ms": "^0.7.30",
+    "@types/node-fetch": "^2.1.2",
+    "@types/ora": "^3.1.0",
+    "dotenv": "6.2.0",
+    "jest": "24.1.0",
+    "nodemon": "1.18.10",
+    "prettier": "^2.2.1",
+    "standard-changelog": "2.0.7",
+    "ts-jest": "24.0.0",
+    "ts-node": "8.0.3",
+    "tslint": "5.13.1",
+    "typescript": "3.3.3333"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jokio/jok-cli"
+  },
+  "release": {
+    "branch": "master"
+  },
+  "resolutions": {
+    "**/event-stream": "^4.0.1"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "keywords": [
+    "jok",
+    "cli"
+  ],
+  "license": "MIT",
+  "jest": {
+    "transform": {
+      "^.+\\.tsx?$": "ts-jest"
+    },
+    "testURL": "http://localhost",
+    "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.(jsx?|tsx?)$",
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js",
+      "jsx",
+      "json",
+      "node"
+    ]
+  }
 }
