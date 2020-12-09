@@ -1,4 +1,4 @@
-import { RootType } from '../../utils/rootType'
+import { RootType } from "../../utils/rootType";
 
 export default function ({
 	rootType,
@@ -9,34 +9,30 @@ export default function ({
 	renderContent,
 	hasResultType,
 }) {
-
 	const omittedOptionsType = {
-		[RootType.Query]: 'OmittedQueryOptions',
-		'watchQuery': 'OmittedWatchQueryOptions',
-		[RootType.Mutation]: 'OmittedMutationOptions',
-		[RootType.Subscription]: 'OmittedSubscriptionOptions',
-	}[rootType]
+		[RootType.Query]: "OmittedQueryOptions",
+		watchQuery: "OmittedWatchQueryOptions",
+		[RootType.Mutation]: "OmittedMutationOptions",
+		[RootType.Subscription]: "OmittedSubscriptionOptions",
+	}[rootType];
 
-	const fragmentRequiredSymbol = generateDefaultFragments
-		? '?'
-		: ''
+	const fragmentRequiredSymbol = generateDefaultFragments ? "?" : "";
 
 	const fragmentProp = hasResultType
-		? `fragment${fragmentRequiredSymbol}: string,`
-		: ''
+		? `fragment${fragmentRequiredSymbol}: string | DocumentNode,`
+		: "";
 
-	const fragmentType = hasResultType
-		? '& FragmentOptions'
-		: ''
+	const fragmentType = hasResultType ? "& FragmentOptions" : "";
 
 	if (!hasProps) {
+		// without props
 		return `
 	${methodName}(
 		${fragmentProp}
 		options?: GraphqlCallOptions ${fragmentType} & ${omittedOptionsType},
 	) {
 	${renderContent()}
-	}`
+	}`;
 	}
 
 	// with props
@@ -47,5 +43,5 @@ export default function ({
 		options?: GraphqlCallOptions ${fragmentType} & ${omittedOptionsType},
 	) {
 	${renderContent()}
-	}`
+	}`;
 }
