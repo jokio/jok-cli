@@ -1,22 +1,18 @@
-export default function ({
-	hasProps,
-}: Props) {
-	if (hasProps) {
-		return `
+export default function ({ hasProps }: Props) {
+  if (hasProps) {
+    return `
 		return {
 			query,
 			variables: props,
 		}`
-	}
-
-	else {
-		return `
+  } else {
+    return `
 		return {
 			query,
 		}`
-	}
+  }
 }
 
 interface Props {
-	hasProps: boolean
+  hasProps: boolean
 }

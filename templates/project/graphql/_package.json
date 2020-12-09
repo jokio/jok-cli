@@ -1,68 +1,57 @@
 {
-	"name": "jokio-app",
-	"version": "0.0.1",
-	"author": "",
-	"description": "",
-	"main": "dist/index.js",
-	"types": "dist/index.d.js",
-	"scripts": {
-		"start": "node dist",
-		"dev": "nodemon",
-		"build": "tsc",
-		"lint": "tslint --project .",
-		"test": "jest",
-		"test-ci": "jest --coverage",
-		"cleanup": "rm -fr dist/",
-		"prepublishOnly": "npm run build",
-		"postpack": "npm run cleanup"
-	},
-	"files": [
-		"dist"
-	],
-	"dependencies": {
-		"apollo-server-express": "2.4.0",
-		"express": "4.16.4",
-		"graphql": "14.0.2",
-		"graphql-voyager": "1.0.0-rc.26"
-	},
-	"devDependencies": {
-		"@types/jest": "23.3.10",
-		"@types/node": "10.12.18",
-		"dotenv": "6.2.0",
-		"jest": "23.6.0",
-		"nodemon": "1.18.9",
-		"ts-jest": "23.10.5",
-		"ts-node": "8.0.2",
-		"tslint": "5.12.0",
-		"typescript": "3.3.3"
-	},
-	"resolutions": {
-		"**/event-stream": "^4.0.1"
-	},
-	"repository": {
-		"type": "git",
-		"url": ""
-	},
-	"publishConfig": {
-		"access": "public"
-	},
-	"keywords": [
-		"jok"
-	],
-	"license": "MIT",
-	"jest": {
-		"transform": {
-			"^.+\\.tsx?$": "ts-jest"
-		},
-		"testURL": "http://localhost",
-		"testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.(jsx?|tsx?)$",
-		"moduleFileExtensions": [
-			"ts",
-			"tsx",
-			"js",
-			"jsx",
-			"json",
-			"node"
-		]
-	}
+  "name": "jokio-app",
+  "version": "0.0.1",
+  "author": "",
+  "description": "",
+  "main": "dist/index.js",
+  "types": "dist/index.d.js",
+  "scripts": {
+    "start": "node dist",
+    "dev": "nodemon",
+    "build": "tsc",
+    "lint": "tslint --project .",
+    "test": "jest",
+    "test-ci": "jest --coverage",
+    "cleanup": "rm -fr dist/",
+    "prepublishOnly": "npm run build",
+    "postpack": "npm run cleanup"
+  },
+  "files": ["dist"],
+  "dependencies": {
+    "apollo-server-express": "2.4.0",
+    "express": "4.16.4",
+    "graphql": "14.0.2",
+    "graphql-voyager": "1.0.0-rc.26"
+  },
+  "devDependencies": {
+    "@types/jest": "23.3.10",
+    "@types/node": "10.12.18",
+    "dotenv": "6.2.0",
+    "jest": "23.6.0",
+    "nodemon": "1.18.9",
+    "ts-jest": "23.10.5",
+    "ts-node": "8.0.2",
+    "tslint": "5.12.0",
+    "typescript": "3.3.3"
+  },
+  "resolutions": {
+    "**/event-stream": "^4.0.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "keywords": ["jok"],
+  "license": "MIT",
+  "jest": {
+    "transform": {
+      "^.+\\.tsx?$": "ts-jest"
+    },
+    "testURL": "http://localhost",
+    "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.(jsx?|tsx?)$",
+    "moduleFileExtensions": ["ts", "tsx", "js", "jsx", "json", "node"]
+  }
 }

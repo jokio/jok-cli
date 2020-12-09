@@ -4,16 +4,19 @@ import typeDefs from './schema'
 import { ApolloServer } from './server'
 
 const server = new ApolloServer({
-	typeDefs,
-	resolvers,
-	subscriptions: {
-		path: '/',
-	},
+  typeDefs,
+  resolvers,
+  subscriptions: {
+    path: '/',
+  },
 })
 
-server.express.use('/voyager', voyagerMiddleware({ endpointUrl: '/' }))
+server.express.use(
+  '/voyager',
+  voyagerMiddleware({ endpointUrl: '/' }),
+)
 
 server.listen({ port: 4000 }).then(({ url, subscriptionsUrl }) => {
-	console.log(`🚀 Server ready at ${url}`)
-	console.log(`🚀 Subscriptions ready at ${subscriptionsUrl}`)
+  console.log(`🚀 Server ready at ${url}`)
+  console.log(`🚀 Subscriptions ready at ${subscriptionsUrl}`)
 })

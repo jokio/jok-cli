@@ -1,27 +1,25 @@
 {
-	"compilerOptions": {
-		"module": "commonjs",
-		"target": "es5",
-		"noImplicitAny": false,
-		"sourceMap": false,
-		"declaration": true,
-		"moduleResolution": "node",
-		"rootDir": "src",
-		"experimentalDecorators": true,
-		"emitDecoratorMetadata": true,
-		"noUnusedLocals": true,
-		"noUnusedParameters": true,
-		"strict": true,
-		"outDir": "dist",
-		"lib": [
-			"esnext"
-		]
-	},
-	"exclude": [
-		"node_modules",
-		"examples",
-		"dist",
-		"tests",
-		"templates"
-	]
+  "compilerOptions": {
+    "module": "commonjs",
+    "target": "es5",
+    "noImplicitAny": false,
+    "sourceMap": false,
+    "declaration": true,
+    "moduleResolution": "node",
+    "rootDir": "src",
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "strict": true,
+    "outDir": "dist",
+    "lib": ["esnext"]
+  },
+  "exclude": [
+    "node_modules",
+    "examples",
+    "dist",
+    "tests",
+    "templates"
+  ]
 }

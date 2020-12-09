@@ -1,9 +1,5 @@
-export default function ({
-	hasProps,
-	queryName,
-}: Props) {
-
-	return `
+export default function ({ hasProps, queryName }: Props) {
+  return `
 	return this.client.writeQuery({
 		query,
 		data: { ${queryName}: data },
@@ -13,6 +9,6 @@ export default function ({
 }
 
 interface Props {
-	hasProps: boolean
-	queryName: string
+  hasProps: boolean
+  queryName: string
 }

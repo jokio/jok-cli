@@ -1,19 +1,19 @@
 export default function ({
-	hasFragment,
-	queryName,
-	variablesDeclarationString,
-	variablesString,
+  hasFragment,
+  queryName,
+  variablesDeclarationString,
+  variablesString,
 }) {
-	if (!hasFragment) {
-		return `	// build query
+  if (!hasFragment) {
+    return `	// build query
 		const query = gql2\`
 		query ${queryName}${variablesDeclarationString} {
 			${queryName}${variablesString}
 		}
 		\``
-	}
+  }
 
-	return `
+  return `
 		// build query
 		const query = gql2\`
 		query ${queryName}${variablesDeclarationString} {

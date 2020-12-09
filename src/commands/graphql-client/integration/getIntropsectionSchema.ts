@@ -1,22 +1,22 @@
 import { IntrospectionSchema } from 'graphql'
 import fetch from 'node-fetch'
 
-export default async function (graphqlUrl): Promise<IntrospectionSchema> {
-	const body = requestData
-		.replace(/\n/g, '')
-		.replace(/\t/g, ' ')
+export default async function (
+  graphqlUrl,
+): Promise<IntrospectionSchema> {
+  const body = requestData.replace(/\n/g, '').replace(/\t/g, ' ')
 
-	const result = await fetch(graphqlUrl, {
-		method: 'POST',
-		headers: {
-			'content-type': 'application/json',
-		},
-		body,
-	})
+  const result = await fetch(graphqlUrl, {
+    method: 'POST',
+    headers: {
+      'content-type': 'application/json',
+    },
+    body,
+  })
 
-	const json = await result.json()
+  const json = await result.json()
 
-	return json.data.__schema
+  return json.data.__schema
 }
 
 const requestData = `{
