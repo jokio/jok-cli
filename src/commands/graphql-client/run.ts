@@ -7,12 +7,14 @@ export default async function ({
 	outputUrl,
 	generateDefaultFragments,
 	useApolloClientV3,
+	includeTypeName,
 }) {
 	const introspectionSchema = await getIntropsectionSchema(graphqlUrl);
 	const output = generateProxy(
 		introspectionSchema,
 		generateDefaultFragments,
-		useApolloClientV3
+		useApolloClientV3,
+		includeTypeName
 	);
 
 	saveGeneratedFile(outputUrl, output);

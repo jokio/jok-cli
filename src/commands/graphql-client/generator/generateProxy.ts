@@ -8,7 +8,8 @@ import renderQueryTypesEnum from "./render/renderQueryTypesEnum";
 export default function (
 	introspectionSchema: IntrospectionSchema,
 	generateDefaultFragments: boolean,
-	useApolloClientV3: boolean
+	useApolloClientV3: boolean,
+	includeTypeName: boolean
 ) {
 	const {
 		queryType: { name: queryTypeName },
@@ -68,7 +69,7 @@ export default function (
 
 	const generatedOtherTypes = otherTypes
 		.sort(sortTypesByKind)
-		.map(generateType)
+		.map(generateType(includeTypeName))
 		.filter((x) => !!x)
 		.join("\n");
 

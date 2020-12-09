@@ -9,36 +9,39 @@ import {
 } from "graphql";
 import getTypescriptField from "./getTypescriptField";
 
-export default function (type: IntrospectionType) {
-	if (type.name.startsWith("__")) {
-		return;
-	}
-
-	switch (type.kind) {
-		case "OBJECT":
-		case "INTERFACE":
-			return objectType(type);
-
-		case "INPUT_OBJECT":
-			return inputObjectType(type);
-
-		case "ENUM":
-			return enumType(type);
-
-		case "SCALAR":
-			return scalarType(type);
-
-		case "UNION":
-			return unionType(type);
-
-		default:
-			console.log("MISSED GENERATION FOR", type);
+export default function (includeTypeName: boolean) {
+	return (type: IntrospectionType) => {
+		if (type.name.startsWith("__")) {
 			return;
-	}
+		}
+
+		switch (type.kind) {
+			case "OBJECT":
+			case "INTERFACE":
+				return objectType(type, includeTypeName);
+
+			case "INPUT_OBJECT":
+				return inputObjectType(type);
+
+			case "ENUM":
+				return enumType(type);
+
+			case "SCALAR":
+				return scalarType(type);
+
+			case "UNION":
+				return unionType(type);
+
+			default:
+				console.log("MISSED GENERATION FOR", type);
+				return;
+		}
+	};
 }
 
 function objectType(
-	type: IntrospectionObjectType | IntrospectionInterfaceType
+	type: IntrospectionObjectType | IntrospectionInterfaceType,
+	includeTypeName: boolean
 ) {
 	const fields = type.fields
 		.map((x) => getTypescriptField(x.name, x.type))
@@ -48,7 +51,12 @@ function objectType(
 	const typeName = type.name;
 
 	return `
-export interface ${typeName} {
+export interface ${typeName} {${
+		includeTypeName
+			? `
+	__typename:"${typeName}"`
+			: ""
+	}
 ${fields}
 }`;
 }
