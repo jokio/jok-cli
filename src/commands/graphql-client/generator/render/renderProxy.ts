@@ -1,39 +1,54 @@
-import renderImports from './renderImports'
+import renderImports from "./renderImports";
 
-export default function ({
-	generatedOtherTypes,
-	generatedQuery,
-	generatedWatchQuery,
-	generatedRefetchQuery,
-	generatedMutation,
-	generatedSubscription,
-	generatedQueryTypesEnum,
-}) {
-	return `${renderImports()}
+export default function (
+	{
+		generatedOtherTypes,
+		generatedQuery,
+		generatedWatchQuery,
+		generatedRefetchQuery,
+		generatedMutation,
+		generatedSubscription,
+		generatedQueryTypesEnum,
+	},
+	useApolloClientV3: boolean
+) {
+	return `${renderImports(useApolloClientV3)}
 
 // tslint:disable
 
 // types enum
-${generatedQueryTypesEnum || ''}
+${generatedQueryTypesEnum || ""}
 
 // types
 ${generatedOtherTypes}
 
-${generatedQuery || ''}
-${generatedWatchQuery || ''}
-${generatedRefetchQuery || ''}
-${generatedMutation || ''}
-${generatedSubscription || ''}
+${generatedQuery || ""}
+${generatedWatchQuery || ""}
+${generatedRefetchQuery || ""}
+${generatedMutation || ""}
+${generatedSubscription || ""}
 
 // helper types
 type Omit<T, K extends keyof T> = Pick<T, Exclude<keyof T, K>>
-${generatedQuery ? `
+${
+	generatedQuery
+		? `
 type OmittedQueryOptions = Omit<Partial<QueryOptions<OperationVariables>>, 'query' | 'variables'>
-type OmittedWatchQueryOptions = Omit<Partial<WatchQueryOptions<OperationVariables>>, 'variables' | 'query'>` : ''}
-${generatedMutation ? `
-type OmittedMutationOptions = Omit<Partial<MutationOptions<OperationVariables>>, 'mutation' | 'variables'>` : ''}
-${generatedSubscription ? `
-type OmittedSubscriptionOptions = Omit<Partial<SubscriptionOptions<OperationVariables>>, 'query' | 'variables'>` : ''}
+type OmittedWatchQueryOptions = Omit<Partial<WatchQueryOptions<OperationVariables>>, 'variables' | 'query'>`
+		: ""
+}
+${
+	generatedMutation
+		? `
+type OmittedMutationOptions = Omit<Partial<MutationOptions<OperationVariables>>, 'mutation' | 'variables'>`
+		: ""
+}
+${
+	generatedSubscription
+		? `
+type OmittedSubscriptionOptions = Omit<Partial<SubscriptionOptions<OperationVariables>>, 'query' | 'variables'>`
+		: ""
+}
 
 
 
@@ -47,46 +62,46 @@ interface GraphqlCallOptions {
 }
 
 interface DefaultOptions {
-	${generatedQuery ? 'query?: GraphqlCallOptions' : ''}
-	${generatedWatchQuery ? 'watchQuery?: GraphqlCallOptions' : ''}
-	${generatedMutation ? `mutation?: Omit<GraphqlCallOptions, 'fetchPolicy'>` : ''}
-	${generatedSubscription ? `subscription?: Omit<GraphqlCallOptions, 'errorPolicy'>` : ''}
+	${generatedQuery ? "query?: GraphqlCallOptions" : ""}
+	${generatedWatchQuery ? "watchQuery?: GraphqlCallOptions" : ""}
+	${generatedMutation ? `mutation?: Omit<GraphqlCallOptions, 'fetchPolicy'>` : ""}
+	${
+		generatedSubscription
+			? `subscription?: Omit<GraphqlCallOptions, 'errorPolicy'>`
+			: ""
+	}
 }
 
 export interface Client {
-	${generatedQuery ? 'query: Query' : ''}
-	${generatedWatchQuery ? 'watchQuery: WatchQuery' : ''}
-	${generatedRefetchQuery ? 'refetchQuery: RefetchQuery' : ''}
-	${generatedMutation ? 'mutation: Mutation' : ''}
-	${generatedSubscription ? 'subscription: Subscription' : ''}
+	${generatedQuery ? "query: Query" : ""}
+	${generatedWatchQuery ? "watchQuery: WatchQuery" : ""}
+	${generatedRefetchQuery ? "refetchQuery: RefetchQuery" : ""}
+	${generatedMutation ? "mutation: Mutation" : ""}
+	${generatedSubscription ? "subscription: Subscription" : ""}
 }
 
 export default function (client: ApolloClient<any>, defaultOptions: DefaultOptions = {}): Client {
 	return {
+		${generatedQuery ? "query: new Query(client, defaultOptions.query || {})," : ""}
 		${
-		generatedQuery
-			? 'query: new Query(client, defaultOptions.query || {}),'
-			: ''
+			generatedWatchQuery
+				? "watchQuery: new WatchQuery(client, defaultOptions.query || {}),"
+				: ""
 		}
 		${
-		generatedWatchQuery
-			? 'watchQuery: new WatchQuery(client, defaultOptions.query || {}),'
-			: ''
+			generatedRefetchQuery
+				? "refetchQuery: new RefetchQuery(client, defaultOptions.query || {}),"
+				: ""
 		}
 		${
-		generatedRefetchQuery
-			? 'refetchQuery: new RefetchQuery(client, defaultOptions.query || {}),'
-			: ''
+			generatedMutation
+				? "mutation: new Mutation(client, defaultOptions.mutation || {}),"
+				: ""
 		}
 		${
-		generatedMutation
-			? 'mutation: new Mutation(client, defaultOptions.mutation || {}),'
-			: ''
-		}
-		${
-		generatedSubscription
-			? 'subscription: new Subscription(client, defaultOptions.subscription || {}),'
-			: ''
+			generatedSubscription
+				? "subscription: new Subscription(client, defaultOptions.subscription || {}),"
+				: ""
 		}
 	}
 }
@@ -122,5 +137,5 @@ function getFirstFragmentName(fragment: string | Object) {
 
 	return fragment['definitions'][0].name.value
 }
-`
+`;
 }

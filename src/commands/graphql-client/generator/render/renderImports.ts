@@ -1,6 +1,9 @@
-export default function () {
-	return `
-import ApolloClient, {
+export default function (useApolloClient3 = false) {
+	return `${
+		useApolloClient3
+			? `
+import {
+	ApolloClient,
 	ErrorPolicy,
 	FetchPolicy,
 	MutationOptions,
@@ -8,8 +11,17 @@ import ApolloClient, {
 	QueryOptions,
 	SubscriptionOptions,
 	WatchQueryOptions,
-} from 'apollo-client'
-
+} from '@apollo/client/core'`
+			: `import ApolloClient, {
+	ErrorPolicy,
+	FetchPolicy,
+	MutationOptions,
+	OperationVariables,
+	QueryOptions,
+	SubscriptionOptions,
+	WatchQueryOptions,
+} from 'apollo-client'`
+	}
 // gql2 - to ignore apollo extention validation
 // for now there is no better way
 import gql2 from 'graphql-tag'
@@ -21,5 +33,5 @@ import { DocumentNode } from 'graphql'
 import { from, observable } from 'rxjs'
 import { map } from 'rxjs/operators'
 
-`
+`;
 }
