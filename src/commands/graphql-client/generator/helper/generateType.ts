@@ -81,7 +81,7 @@ function enumType(type: IntrospectionEnumType) {
 		.map((x) => `\t${x.name} = '${x.name}',`)
 		.join("\n");
 
-	return `
+  return `
 export enum ${typeName} {
 ${fields}
 }`;

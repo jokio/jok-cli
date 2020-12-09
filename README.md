@@ -1,15 +1,15 @@
+# Jok
 
-# Jok 
 [![platform: jokio](https://img.shields.io/badge/platform-%F0%9F%83%8F%20jok-44cc11.svg)](https://github.com/jokio/jok-cli)
 [![npm version](https://badge.fury.io/js/jok.svg)](https://badge.fury.io/js/jok)
 [![codecov](https://codecov.io/gh/jokio/jok-cli/branch/master/graph/badge.svg)](https://codecov.io/gh/jokio/jok-cli)
 
 `jok` is a namespace which bundles utility functions for code generation, related to nodejs and graphql
 
-
 # API (functions)
 
 ## `init`
+
 The easiest way to create new project on nodejs
 
 Those features are out of the box in default template :
@@ -26,13 +26,12 @@ Those features are out of the box in default template :
 
 ✅ Last but not least: 100% type safety! ([TypeScript](https://github.com/Microsoft/TypeScript))
 
-
-
 _Note: `jok init` command is next version of [create-jokio-app](https://github.com/jokio/create-jokio-app)_
 <br/>
 <br/>
 
 ## `graphql-client`
+
 Generate sdk for graphql remote endpoint in front-end projects.
 
 Features:
@@ -45,6 +44,7 @@ Features:
 <br/>
 
 # How to use
+
 Recommended way to use `jok-cli` is to have [npx](https://github.com/zkat/npx) package installed globally on your computer and use following commands:
 
 _Note: npx will take care to use latest version of `jok cli` every time you run the command, thats why its recommended way_
@@ -64,9 +64,10 @@ EXAMPLES
   npx jok init server-app --graphql
 ```
 
-
 ## graphql-client
+
 for generating graphql client in front-end projects (Angular, React, etc.) `graphql-client` has dependencies on apollo client
+
 ```
 USAGE
   graphql-client [options]
@@ -110,16 +111,21 @@ graphql.subscription.musicChannelUpdated({}).subscribe(x => {
 })
 
 ```
+
 _Note: You will need to have [apollo client](https://github.com/apollographql/apollo-client) already configured in your project_
 
 <br/>
 
 # Alternative way to use
+
 if you prefer using [yarn](https://github.com/yarnpkg/yarn), please install jok-cli globally first
+
 ```bash
 yarn add global jok
 ```
+
 and next you will be able to call `jok commands` directly:
+
 ```bash
 jok init testapp # initialize empty pre-configured project
 

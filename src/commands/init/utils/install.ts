@@ -4,31 +4,30 @@ import * as messages from '../messages'
 import getInstallCmd from './get-install-cmd'
 
 export default async function (opts) {
-	const projectName = opts.projectName
-	const projectPath = opts.projectPath
-	const packages = opts.packages || []
+  const projectName = opts.projectName
+  const projectPath = opts.projectPath
+  const packages = opts.packages || []
 
-	const installCmd = getInstallCmd()
+  const installCmd = getInstallCmd()
 
-	process.chdir(projectPath)
+  process.chdir(projectPath)
 
-	const stopInstallSpinner = output.wait('Installing modules')
+  const stopInstallSpinner = output.wait('Installing modules')
 
-	try {
-		const result = await execa(installCmd, ['install'])
+  try {
+    const result = await execa(installCmd, ['install'])
 
-		stopInstallSpinner()
-		output.success(`Installed dependencies for ${projectName}`)
+    stopInstallSpinner()
+    output.success(`Installed dependencies for ${projectName}`)
 
-		return result
-	}
-	catch (err) {
-		console.log(err)
-		stopInstallSpinner()
-		console.log(messages.installError(packages))
+    return result
+  } catch (err) {
+    console.log(err)
+    stopInstallSpinner()
+    console.log(messages.installError(packages))
 
-		throw new Error(`${installCmd} installation failed`)
-	}
+    throw new Error(`${installCmd} installation failed`)
+  }
 }
 
 // function getInstallArgs(cmd, packages) {

@@ -1,152 +1,121 @@
 {
-	"rules": {
-		"arrow-return-shorthand": true,
-		"callable-types": true,
-		"class-name": true,
-		"comment-format": [
-			true,
-			"check-space"
-		],
-		"curly": true,
-		"eofline": true,
-		"import-spacing": true,
-		"indent": [
-			true,
-			"tabs"
-		],
-		"interface-over-type-literal": true,
-		"max-line-length": [
-			true,
-			120
-		],
-		"member-access": false,
-		"member-ordering": [
-			true,
-			"static-before-instance"
-		],
-		"no-any": false,
-		"no-inferrable-types": false,
-		"no-internal-module": true,
-		"no-var-requires": false,
-		"typedef": false,
-		"typedef-whitespace": [
-			false,
-			{
-				"call-signature": "nospace",
-				"index-signature": "nospace",
-				"parameter": "nospace",
-				"property-declaration": "space",
-				"variable-declaration": "space"
-			},
-			{
-				"call-signature": "space",
-				"index-signature": "space",
-				"parameter": "space",
-				"property-declaration": "space",
-				"variable-declaration": "space"
-			}
-		],
-		"ban": false,
-		"forin": false,
-		"label-position": true,
-		"no-arg": true,
-		"no-bitwise": false,
-		"no-conditional-assignment": true,
-		"no-console": [
-			true,
-			"debug",
-			"info",
-			"time",
-			"timeEnd",
-			"trace"
-		],
-		"no-construct": true,
-		"no-debugger": true,
-		"no-duplicate-super": true,
-		"no-empty": true,
-		"no-duplicate-variable": true,
-		"no-empty-interface": true,
-		"no-eval": true,
-		"no-null-keyword": false,
-		"no-redundant-jsdoc": true,
-		"no-shadowed-variable": true,
-		"no-string-literal": false,
-		"no-string-throw": true,
-		"no-switch-case-fall-through": true,
-		"no-trailing-whitespace": true,
-		"no-unnecessary-initializer": true,
-		"no-unused-expression": true,
-		"no-var-keyword": true,
-		"switch-default": true,
-		"no-require-imports": false,
-		"object-literal-sort-keys": false,
-		"trailing-comma": [
-			true,
-			{
-				"multiline": "always",
-				"singleline": "never"
-			}
-		],
-		"align": false,
-		"interface-name": false,
-		"jsdoc-format": false,
-		"no-parameter-properties": false,
-		"ordered-imports": true,
-		"one-line": [
-			false,
-			"check-open-brace",
-			"check-catch",
-			"check-else",
-			"check-finally",
-			"check-whitespace"
-		],
-		"prefer-const": true,
-		"quotemark": [
-			true,
-			"single",
-			"avoid-escape"
-		],
-		"radix": true,
-		"semicolon": [
-			true,
-			"never"
-		],
-		"triple-equals": [
-			true,
-			"allow-null-check"
-		],
-		"variable-name": [
-			true,
-			"check-format",
-			"allow-leading-underscore",
-			"allow-trailing-underscore",
-			"allow-pascal-case",
-			"ban-keywords"
-		],
-		"whitespace": [
-			true,
-			"check-branch",
-			"check-decl",
-			"check-operator",
-			"check-module",
-			"check-separator",
-			"check-rest-spread",
-			"check-type",
-			"check-type-operator",
-			"check-preblock"
-		],
-		"newline-before-return": false,
-		"prefer-object-spread": true,
-		"no-consecutive-blank-lines": true,
-		"no-duplicate-imports": true,
-		"no-duplicate-switch-case": true,
-		"no-import-side-effect": true,
-		"no-invalid-this": true,
-		"no-parameter-reassignment": true
-	},
-	"linterOptions": {
-		"exclude": [
-			"**/generated/**"
-		]
-	}
+  "rules": {
+    "arrow-return-shorthand": true,
+    "callable-types": true,
+    "class-name": true,
+    "comment-format": [true, "check-space"],
+    "curly": true,
+    "eofline": true,
+    "import-spacing": true,
+    "indent": [true, "tabs"],
+    "interface-over-type-literal": true,
+    "max-line-length": [true, 120],
+    "member-access": false,
+    "member-ordering": [true, "static-before-instance"],
+    "no-any": false,
+    "no-inferrable-types": false,
+    "no-internal-module": true,
+    "no-var-requires": false,
+    "typedef": false,
+    "typedef-whitespace": [
+      false,
+      {
+        "call-signature": "nospace",
+        "index-signature": "nospace",
+        "parameter": "nospace",
+        "property-declaration": "space",
+        "variable-declaration": "space"
+      },
+      {
+        "call-signature": "space",
+        "index-signature": "space",
+        "parameter": "space",
+        "property-declaration": "space",
+        "variable-declaration": "space"
+      }
+    ],
+    "ban": false,
+    "forin": false,
+    "label-position": true,
+    "no-arg": true,
+    "no-bitwise": false,
+    "no-conditional-assignment": true,
+    "no-console": [true, "debug", "info", "time", "timeEnd", "trace"],
+    "no-construct": true,
+    "no-debugger": true,
+    "no-duplicate-super": true,
+    "no-empty": true,
+    "no-duplicate-variable": true,
+    "no-empty-interface": true,
+    "no-eval": true,
+    "no-null-keyword": false,
+    "no-redundant-jsdoc": true,
+    "no-shadowed-variable": true,
+    "no-string-literal": false,
+    "no-string-throw": true,
+    "no-switch-case-fall-through": true,
+    "no-trailing-whitespace": true,
+    "no-unnecessary-initializer": true,
+    "no-unused-expression": true,
+    "no-var-keyword": true,
+    "switch-default": true,
+    "no-require-imports": false,
+    "object-literal-sort-keys": false,
+    "trailing-comma": [
+      true,
+      {
+        "multiline": "always",
+        "singleline": "never"
+      }
+    ],
+    "align": false,
+    "interface-name": false,
+    "jsdoc-format": false,
+    "no-parameter-properties": false,
+    "ordered-imports": true,
+    "one-line": [
+      false,
+      "check-open-brace",
+      "check-catch",
+      "check-else",
+      "check-finally",
+      "check-whitespace"
+    ],
+    "prefer-const": true,
+    "quotemark": [true, "single", "avoid-escape"],
+    "radix": true,
+    "semicolon": [true, "never"],
+    "triple-equals": [true, "allow-null-check"],
+    "variable-name": [
+      true,
+      "check-format",
+      "allow-leading-underscore",
+      "allow-trailing-underscore",
+      "allow-pascal-case",
+      "ban-keywords"
+    ],
+    "whitespace": [
+      true,
+      "check-branch",
+      "check-decl",
+      "check-operator",
+      "check-module",
+      "check-separator",
+      "check-rest-spread",
+      "check-type",
+      "check-type-operator",
+      "check-preblock"
+    ],
+    "newline-before-return": false,
+    "prefer-object-spread": true,
+    "no-consecutive-blank-lines": true,
+    "no-duplicate-imports": true,
+    "no-duplicate-switch-case": true,
+    "no-import-side-effect": true,
+    "no-invalid-this": true,
+    "no-parameter-reassignment": true
+  },
+  "linterOptions": {
+    "exclude": ["**/generated/**"]
+  }
 }

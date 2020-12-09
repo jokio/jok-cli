@@ -1,5 +1,5 @@
 export enum RootType {
-	Query = 'query',
-	Mutation = 'mutation',
-	Subscription = 'subscription',
+  Query = 'query',
+  Mutation = 'mutation',
+  Subscription = 'subscription',
 }
