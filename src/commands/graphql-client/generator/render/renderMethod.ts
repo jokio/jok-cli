@@ -23,7 +23,7 @@ export default function ({
   const fragmentRequiredSymbol = generateDefaultFragments ? '?' : ''
 
   const fragmentProp = hasResultType
-    ? `fragment${fragmentRequiredSymbol}: string | any,`
+    ? `fragment${fragmentRequiredSymbol}: string | DocumentNode,`
     : ''
 
   const fragmentType = hasResultType ? 'FragmentOptions' : ''

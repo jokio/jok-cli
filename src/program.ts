@@ -2,12 +2,13 @@
 
 import chalk from 'chalk'
 import * as program from 'commander'
-// tslint:enable
-import graphqlClientCommand from './commands/graphql-client'
-import initCommand from './commands/init'
 
 // tslint:disable
 const pkg = require('../package.json')
+// tslint:enable
+
+import graphqlClientCommand from './commands/graphql-client'
+import initCommand from './commands/init'
 
 program
   .name('Jok CLI')
@@ -58,22 +59,40 @@ program
   )
   .option('-o, --output <output>', 'result file address', /.+/i)
   .option('--defaultFragments', 'generate default fragments')
-  .action(({ endpointUrl, output, defaultFragments }) => {
-    if (!endpointUrl || !output) {
-      console.warn(
-        `${chalk.red(
-          'Missing options',
-        )} please pass --endpointUrl and --output`,
-      )
-      return
-    }
-
-    graphqlClientCommand({
+  .option(
+    '--useApolloClient3',
+    'use Apollo Client v3 (otherwise use v2)',
+  )
+  .option(
+    '--includeTypeName',
+    'include __typename in type definitions',
+  )
+  .action(
+    ({
       endpointUrl,
       output,
-      generateDefaultFragments: defaultFragments,
-    })
-  })
+      defaultFragments,
+      useApolloClient3 = false,
+      includeTypeName = false,
+    }) => {
+      if (!endpointUrl || !output) {
+        console.warn(
+          `${chalk.red(
+            'Missing options',
+          )} please pass --endpointUrl and --output`,
+        )
+        return
+      }
+
+      graphqlClientCommand({
+        endpointUrl,
+        output,
+        generateDefaultFragments: defaultFragments,
+        useApolloClientV3: useApolloClient3,
+        includeTypeName,
+      })
+    },
+  )
   .on('--help', () => {
     console.log()
     console.log('Examples:')

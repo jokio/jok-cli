@@ -1,17 +1,20 @@
 import renderImports from './renderImports'
 
-export default function ({
-  generatedOtherTypes,
-  generatedQuery,
-  generatedWatchQuery,
-  generatedRefetchQuery,
-  generatedCacheWriteQuery,
-  generatedMutation,
-  generatedSubscription,
-  generatedSubscriptionDocument,
-  generatedQueryTypesEnum,
-}) {
-  return `${renderImports()}
+export default function (
+  {
+    generatedOtherTypes,
+    generatedQuery,
+    generatedWatchQuery,
+    generatedRefetchQuery,
+    generatedCacheWriteQuery,
+    generatedMutation,
+    generatedSubscription,
+    generatedSubscriptionDocument,
+    generatedQueryTypesEnum,
+  },
+  useApolloClientV3: boolean,
+) {
+  return `${renderImports(useApolloClientV3)}
 
 // tslint:disable
 
@@ -40,7 +43,8 @@ type OmittedWatchQueryOptions = Omit<Partial<WatchQueryOptions<OperationVariable
 type SubscribeToMoreOptions<T> = {
 	subscribeToMore?:
 	  {
-		graphqlDocument: { document: any, variables?: any } | ((subscription: SubscriptionDocument) => { document: any, variables?: any }),
+		graphqlDocument: { document: any, variables?: any } |
+			((subscription: SubscriptionDocument) => { document: any, variables?: any }),
 		updateQuery: UpdateQueryFn<T, any, any>
 	  }[]
 }

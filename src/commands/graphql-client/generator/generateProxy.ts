@@ -8,6 +8,8 @@ import renderQueryTypesEnum from './render/renderQueryTypesEnum'
 export default function (
   introspectionSchema: IntrospectionSchema,
   generateDefaultFragments: boolean,
+  useApolloClientV3: boolean,
+  includeTypeName: boolean,
 ) {
   const {
     queryType: { name: queryTypeName },
@@ -85,23 +87,26 @@ export default function (
 
   const generatedOtherTypes = otherTypes
     .sort(sortTypesByKind)
-    .map(generateType)
+    .map(generateType(includeTypeName))
     .filter(x => !!x)
     .join('\n')
 
   const generatedQueryTypesEnum = renderQueryTypesEnum(objectTypes)
 
-  return renderProxy({
-    generatedQuery,
-    generatedWatchQuery,
-    generatedRefetchQuery,
-    generatedCacheWriteQuery,
-    generatedMutation,
-    generatedSubscription,
-    generatedSubscriptionDocument,
-    generatedOtherTypes,
-    generatedQueryTypesEnum,
-  })
+  return renderProxy(
+    {
+      generatedQuery,
+      generatedWatchQuery,
+      generatedRefetchQuery,
+      generatedCacheWriteQuery,
+      generatedMutation,
+      generatedSubscription,
+      generatedSubscriptionDocument,
+      generatedOtherTypes,
+      generatedQueryTypesEnum,
+    },
+    useApolloClientV3,
+  )
 }
 
 function sortTypesByKind(a: IntrospectionType, b: IntrospectionType) {

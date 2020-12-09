@@ -10,12 +10,8 @@ export default function (
   }
 
   const fields = inputs
-    .map(x =>
-      getTypescriptField(x.name, x.type, {
-        isNull: false,
-        isList: false,
-      }),
-    )
+
+    .map(x => getTypescriptField(x.name, x.type))
     .map(x => `\t${x}`)
     .join('\n')
 
