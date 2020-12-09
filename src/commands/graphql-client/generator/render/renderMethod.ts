@@ -1,47 +1,47 @@
-import { RootType } from "../../utils/rootType";
+import { RootType } from '../../utils/rootType'
 
 export default function ({
-	rootType,
-	methodName,
-	generateDefaultFragments,
-	hasProps,
-	propsType,
-	renderContent,
-	hasResultType,
+  rootType,
+  methodName,
+  generateDefaultFragments,
+  hasProps,
+  propsType,
+  renderContent,
+  hasResultType,
+  returnClassFullname,
 }) {
-	const omittedOptionsType = {
-		[RootType.Query]: "OmittedQueryOptions",
-		watchQuery: "OmittedWatchQueryOptions",
-		[RootType.Mutation]: "OmittedMutationOptions",
-		[RootType.Subscription]: "OmittedSubscriptionOptions",
-	}[rootType];
+  const omittedOptionsType = {
+    [RootType.Query]: 'OmittedQueryOptions',
+    watchQuery: `OmittedWatchQueryOptions & SubscribeToMoreOptions<{ ${methodName} : ${returnClassFullname}}>`,
+    cacheWriteQuery: 'OmittedQueryOptions',
+    [RootType.Mutation]: 'OmittedMutationOptions',
+    [RootType.Subscription]: 'OmittedSubscriptionOptions',
+  }[rootType]
 
-	const fragmentRequiredSymbol = generateDefaultFragments ? "?" : "";
+  const isCacheWriteQueryMode = rootType === 'cacheWriteQuery'
 
-	const fragmentProp = hasResultType
-		? `fragment${fragmentRequiredSymbol}: string | DocumentNode,`
-		: "";
+  const fragmentRequiredSymbol = generateDefaultFragments ? '?' : ''
 
-	const fragmentType = hasResultType ? "& FragmentOptions" : "";
+  const fragmentProp = hasResultType
+    ? `fragment${fragmentRequiredSymbol}: string | DocumentNode,`
+    : ''
 
-	if (!hasProps) {
-		// without props
-		return `
+  const fragmentType = hasResultType ? 'FragmentOptions' : ''
+
+  return `
 	${methodName}(
-		${fragmentProp}
-		options?: GraphqlCallOptions ${fragmentType} & ${omittedOptionsType},
+		${hasProps ? `props: ${propsType},` : ``}
+		${
+      isCacheWriteQueryMode
+        ? `data: any,
+			${fragmentProp}`
+        : `
+			${fragmentProp}
+			options?: GraphqlCallOptions ${
+        fragmentType ? `& ${fragmentType}` : ''
+      } & ${omittedOptionsType},`
+    }
 	) {
 	${renderContent()}
-	}`;
-	}
-
-	// with props
-	return `
-	${methodName}(
-		props: ${propsType},
-		${fragmentProp}
-		options?: GraphqlCallOptions ${fragmentType} & ${omittedOptionsType},
-	) {
-	${renderContent()}
-	}`;
+	}`
 }

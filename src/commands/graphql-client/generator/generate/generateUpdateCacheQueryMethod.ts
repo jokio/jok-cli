@@ -3,16 +3,14 @@ import buildVariablesDeclarationString from '../../domain/buildVariablesDeclarat
 import buildVariablesPassString from '../../domain/buildVariablesPassString'
 import getGraphqlTypeString from '../../domain/getGraphqlTypeString'
 import getTypescriptPropsTypeName from '../../domain/getTypescriptPropsTypeName'
-import getTypescriptTypeString from '../../domain/getTypescriptTypeString'
-import { RootType } from '../../utils/rootType'
 import uncapitalizeFirstLetter from '../../utils/uncapitalizeFirstLetter'
 import generatePropsType from '../helper/generatePropsType'
 import generateResultTypeFields from '../helper/generateResultTypeFields'
-import renderApolloCall from '../render/renderApolloCall'
+import cacheWriteQuery from '../render/cacheWriteQuery'
 import renderFragment from '../render/renderFragment'
 import renderMethod from '../render/renderMethod'
-import renderMutation from '../render/renderMutation'
 import renderOptions from '../render/renderOptions'
+import renderQuery from '../render/renderQuery'
 
 export default function (
   field: IntrospectionField,
@@ -20,14 +18,10 @@ export default function (
   generateDefaultFragments: boolean,
 ) {
   const queryName = field.name
-  const propsType = getTypescriptPropsTypeName('Mutation', queryName)
+  const propsType = getTypescriptPropsTypeName('Query', queryName)
   const inputs = field.args || []
   const methodName = uncapitalizeFirstLetter(queryName)
   const hasInputs = !!inputs.length
-
-  const returnClassFullname = getTypescriptTypeString({
-    type: field.type,
-  })
 
   const returnClassName = getGraphqlTypeString({
     type: field.type,
@@ -53,16 +47,16 @@ export default function (
   )
 
   const method = renderMethod({
-    rootType: RootType.Mutation,
-    methodName,
+    rootType: 'cacheWriteQuery',
+    methodName: methodName,
     generateDefaultFragments,
     hasProps: hasInputs,
     propsType,
     hasResultType,
-    returnClassFullname,
+    returnClassFullname: '',
     renderContent: () =>
       // Render Query
-      renderOptions(fragmentName, hasResultType) +
+      renderOptions(fragmentName, hasResultType, true) +
       (hasResultType
         ? renderFragment(
             type,
@@ -70,17 +64,15 @@ export default function (
             returnGraphqlTypeName,
           )
         : '') +
-      renderMutation({
+      renderQuery({
         hasFragment: hasResultType,
         queryName,
         variablesDeclarationString,
         variablesString,
       }) +
-      renderApolloCall({
-        rootType: RootType.Mutation,
-        hasVariables: hasInputs,
+      cacheWriteQuery({
+        hasProps: hasInputs,
         queryName,
-        returnType: returnClassFullname,
       }),
   })
 
