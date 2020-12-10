@@ -162,12 +162,13 @@ function getResultData<T>(result: any, dataFieldName: any) {
 	return <T><any>result.data[dataFieldName]
 }
 
-function getFirstFragmentName(fragmentParam: string | Object) {
+function getFirstFragmentName(fragmentParam: string | Object | undefined) {
 
   if (typeof fragmentParam !== 'object') { return }
   const fragment = fragmentParam as any
 
 	if (
+		!fragment ||
 		!fragment['definitions'] ||
 		!fragment['definitions'][0] ||
 		!fragment['definitions'][0].name ||
