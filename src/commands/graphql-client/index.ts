@@ -8,6 +8,8 @@ export default function ({
   generateDefaultFragments = false,
   useApolloClientV3 = false,
   includeTypeName = false,
+  typeNamePrefix = '',
+  typeNamePostfix = '',
 }) {
   const stopSpinner = consoleOutput.wait(
     'Fetching graphql endpoint (schema introspection)',
@@ -19,6 +21,8 @@ export default function ({
     generateDefaultFragments,
     useApolloClientV3,
     includeTypeName,
+    typeNamePrefix,
+    typeNamePostfix,
   })
     .then(async () => {
       let isTslintApplied = false

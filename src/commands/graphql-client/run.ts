@@ -8,6 +8,8 @@ export default async function ({
   generateDefaultFragments,
   useApolloClientV3,
   includeTypeName,
+  typeNamePrefix,
+  typeNamePostfix,
 }) {
   const introspectionSchema = await getIntropsectionSchema(graphqlUrl)
   const output = generateProxy(
@@ -15,6 +17,8 @@ export default async function ({
     generateDefaultFragments,
     useApolloClientV3,
     includeTypeName,
+    typeNamePrefix,
+    typeNamePostfix,
   )
 
   saveGeneratedFile(outputUrl, output)

@@ -2,13 +2,12 @@
 
 import chalk from 'chalk'
 import * as program from 'commander'
+// tslint:enable
+import graphqlClientCommand from './commands/graphql-client'
+import initCommand from './commands/init'
 
 // tslint:disable
 const pkg = require('../package.json')
-// tslint:enable
-
-import graphqlClientCommand from './commands/graphql-client'
-import initCommand from './commands/init'
 
 program
   .name('Jok CLI')
@@ -67,6 +66,8 @@ program
     '--includeTypeName',
     'include __typename in type definitions',
   )
+  .option('--prefix <prefix>', 'type name prefix')
+  .option('--postfix <postfix>', 'type name prefix')
   .action(
     ({
       endpointUrl,
@@ -74,6 +75,8 @@ program
       defaultFragments,
       useApolloClient3 = false,
       includeTypeName = false,
+      prefix = '',
+      postfix = '',
     }) => {
       if (!endpointUrl || !output) {
         console.warn(
@@ -90,6 +93,8 @@ program
         generateDefaultFragments: defaultFragments,
         useApolloClientV3: useApolloClient3,
         includeTypeName,
+        typeNamePrefix: prefix,
+        typeNamePostfix: postfix,
       })
     },
   )

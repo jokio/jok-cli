@@ -9,7 +9,11 @@ import {
 } from 'graphql'
 import getTypescriptField from './getTypescriptField'
 
-export default function (includeTypeName: boolean) {
+export default function (
+  includeTypeName: boolean,
+  typeNamePrefix: string,
+  typeNamePostfix: string,
+) {
   return (type: IntrospectionType) => {
     if (type.name.startsWith('__')) {
       return
@@ -18,10 +22,15 @@ export default function (includeTypeName: boolean) {
     switch (type.kind) {
       case 'OBJECT':
       case 'INTERFACE':
-        return objectType(type, includeTypeName)
+        return objectType(
+          type,
+          includeTypeName,
+          typeNamePrefix,
+          typeNamePostfix,
+        )
 
       case 'INPUT_OBJECT':
-        return inputObjectType(type)
+        return inputObjectType(type, typeNamePrefix, typeNamePostfix)
 
       case 'ENUM':
         return enumType(type)
@@ -42,6 +51,8 @@ export default function (includeTypeName: boolean) {
 function objectType(
   type: IntrospectionObjectType | IntrospectionInterfaceType,
   includeTypeName: boolean,
+  typeNamePrefix: string,
+  typeNamePostfix: string,
 ) {
   const fields = type.fields
     .map(x => getTypescriptField(x.name, x.type))
@@ -51,7 +62,7 @@ function objectType(
   const typeName = type.name
 
   return `
-export interface ${typeName} {${
+export interface ${typeNamePrefix}${typeName}${typeNamePostfix} {${
     includeTypeName
       ? `
 	__typename:"${typeName}"`
@@ -61,7 +72,11 @@ ${fields}
 }`
 }
 
-function inputObjectType(type: IntrospectionInputObjectType) {
+function inputObjectType(
+  type: IntrospectionInputObjectType,
+  typeNamePrefix: string,
+  typeNamePostfix: string,
+) {
   const fields = type.inputFields
     .map(x => getTypescriptField(x.name, x.type))
     .map(x => `\t${x}`)
@@ -70,7 +85,7 @@ function inputObjectType(type: IntrospectionInputObjectType) {
   const typeName = type.name
 
   return `
-export interface ${typeName} {
+export interface ${typeNamePrefix}${typeName}${typeNamePostfix} {
 ${fields}
 }`
 }

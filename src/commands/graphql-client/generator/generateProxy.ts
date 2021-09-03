@@ -10,6 +10,8 @@ export default function (
   generateDefaultFragments: boolean,
   useApolloClientV3: boolean,
   includeTypeName: boolean,
+  typeNamePrefix: string,
+  typeNamePostfix: string,
 ) {
   const {
     queryType: { name: queryTypeName },
@@ -87,7 +89,9 @@ export default function (
 
   const generatedOtherTypes = otherTypes
     .sort(sortTypesByKind)
-    .map(generateType(includeTypeName))
+    .map(
+      generateType(includeTypeName, typeNamePrefix, typeNamePostfix),
+    )
     .filter(x => !!x)
     .join('\n')
 
