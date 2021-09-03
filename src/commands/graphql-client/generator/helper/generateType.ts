@@ -69,6 +69,11 @@ export interface ${typeNamePrefix}${typeName}${typeNamePostfix} {${
       : ''
   }
 ${fields}
+}
+${
+  typeNamePrefix || typeNamePostfix
+    ? `type ${typeName} = ${typeNamePrefix}${typeName}${typeNamePostfix}`
+    : ''
 }`
 }
 
